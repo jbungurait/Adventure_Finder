@@ -1,0 +1,28 @@
+.map-container {
+  position: relative;
+}
+
+.autocomplete-panel {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 350px;
+  z-index: 1000;
+}
+
+.autocomplete-container {
+  position: relative;
+}
+
+html,
+body,
+#map {
+  width:'400px' ;
+  height: '400px';
+  margin: 0;
+}
+
+.autocomplete-container input.geoapify-autocomplete-input {
+  margin-bottom:0;
+  height:36px;
+}

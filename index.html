@@ -3,10 +3,15 @@
 <head>
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width-device-width, initial-scale=1.0"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <link rel="stylesheet" href="Assets/stylesheet.css">
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css">
+    <script type="text/javascript" src="https://unpkg.com/@geoapify/geocoder-autocomplete@^1/dist/index.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/@geoapify/geocoder-autocomplete@^1/styles/minimal.css">
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    
     <title>Adventure Finder</title>
 </head>
 
@@ -14,7 +19,16 @@
     <header class="flex uppercase font-bold justify-center text-4xl" >
         Adventure Finder
     </header>
-
+    <div class="map-container">
+        <div class="autocomplete-panel">
+          <div id="autocomplete" class="autocomplete-container"></div>
+        </div>
+        <div id="map" style="height:400px"></div>
+    </div>
+    <div class="map-container">
+        <div id="map" style="height:600px"></div>
+    </div>
+      
     <script src="Assets/script.js"></script>
 </body>
 </html>
