@@ -4,12 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width-device-width, initial-scale=1.0"> 
     <link rel="stylesheet" href="/Adventure_Finder/Assets/stylesheet.css">
+    <script src='https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.js'></script>
+    <link href='https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css' rel='stylesheet' />
+
     <title>Adventure Finder</title>
 </head>
 
 <body>
     <header>Adventure Finder</header>
+    <div id='map' style='width: 400px; height: 300px;'></div>
+    <script>
+    var map = new maplibregl.Map({
+      container: 'map',
+      style: 'https://demotiles.maplibre.org/style.json', // stylesheet location
+      center: [-74.5, 40], // starting position [lng, lat]
+      zoom: 9 // starting zoom
+    });
+    </script>
 
-    <script src="/Adventure_Finder/Assets/script.js"></script>
+    <div id="final-score"></div>
+    
+    <form id="score-form">
+      <input type="text" id="initials" placeholder="Enter your initials">
+      
+      <button type="search" id="search-button">Search</button>
+  </form>
+  <div id="leaderboard">
+      
+  
+  </div>
+    
+
+    <script src="Assets/script.js"></script>
 </body>
 </html>
