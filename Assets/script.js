@@ -30,6 +30,9 @@ const myapiKey = "6e962b69616246e393f54d1a809bdb41";
      });
 
 autocompleteInput.on('select', (location) => {
+console.log(location.properties.lon);  
+console.log(location.properties.lat); 
+brew(location.properties.lat, location.properties.lon);
 map.panTo([location.properties.lat, location.properties.lon]);
 });
 
@@ -58,3 +61,12 @@ const markerIcon = L.icon({
       
     }
   });
+
+  console.log(window)
+
+  function brew(lat, long) {
+
+    fetch('https://api.openbrewerydb.org/breweries?by_dist=' + lat + ',' + long + '&per_page=10')
+    .then((response) => response.json())
+    .then((data) => console.log(data));
+  }
