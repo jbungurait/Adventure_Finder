@@ -65,8 +65,19 @@ const markerIcon = L.icon({
   console.log(window)
 
   function brew(lat, long) {
-
     fetch('https://api.openbrewerydb.org/breweries?by_dist=' + lat + ',' + long + '&per_page=10')
     .then((response) => response.json())
-    .then((data) => console.log(data));
-  }
+    .then((data) => {
+        const breweriesUl = document.getElementById("breweries-ul");
+        for (const brewery of data) {
+            const breweryLi = document.createElement("li");
+            breweryLi.innerHTML = brewery.name;
+            breweriesUl.appendChild(breweryLi);
+            
+        }
+        
+    });
+}
+
+    
+  
