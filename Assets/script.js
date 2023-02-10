@@ -55,6 +55,6 @@ const markerIcon = L.icon({
 			}).addTo(map);
       
       map.panTo([location.properties.lat, location.properties.lon]);
-      
+
     }
   });
