@@ -69,4 +69,5 @@ const markerIcon = L.icon({
     fetch('https://api.openbrewerydb.org/breweries?by_dist=' + lat + ',' + long + '&per_page=10')
     .then((response) => response.json())
     .then((data) => console.log(data));
-  }
+  };
+  
