@@ -105,14 +105,26 @@ autocompleteInput.on('select', (location) => {
             breweryLi.innerHTML = brewery.name;
             breweriesUl.appendChild(breweryLi);
 
-          }
+  fetch('https://api.geoapify.com/v2/places?categories=entertainment.culture&filter=place:' + id + '&limit=10&apiKey=56552ab1bbc6495d8b095457b9993b3e')
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data.features);
+      const entertainmentUl = document.getElementById("entertainment-ul");
+      for (const feature of data.features) {
+        console.log(feature)
+        const entertainmentLi = document.createElement("li");
+        //this is meant to provide the entertainment name
+        entertainmentLi.innerHTML = feature.properties.name;
+        //this is meant to provide the entertainment address
+        entertainmentLi.innerHTML += '<br> Address: ' + feature.properties.address_line2.replace(', United States of America', '');
 
-          console.log(data);
-          for (const brewery of data) {
-            const breweryLi = document.createElement("li");
-            breweryLi.innerHTML = `${brewery.name}(${brewery.brewery_type}): ${brewery.phone},  ${brewery.street}, ${brewery.website_url}. `;
-            breweriesUl.appendChild(breweryLi);
-          }
-        });
-    
-      }}})
+
+        //if phone number, then display phone number
+        if (feature.properties.datasource.raw.phone) {
+
+          entertainmentLi.innerHTML += '<br> Phone:' + '<a href="tel:' + feature.properties.datasource.raw.phone + '">' + feature.properties.datasource.raw.phone + '</a>';
+          entertainmentUl.appendChild(entertainmentLi);
+        }
+      }
+    })
+}
