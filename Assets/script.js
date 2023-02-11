@@ -135,3 +135,22 @@ function entertainment(id) {
       }
     });
 }
+
+function hotel(id) {
+  var apiUrl = "https://api.geoapify.com/v2/place-details?radius_500.hotel";
+  var apiKey = "56552ab1bbc6495d8b095457b9993b3e";
+  var format = apiUrl + id + "&limit=10&" + "apiKey=" + apiKey;
+  if (format) {
+    fetch(format)
+      .then(function (response) {
+        if (!response.ok) {
+          throw response.json();
+        }
+        return response.json();
+      })
+      .then((data) => {
+        var hotelLi = d.createElement("li");
+        hotelLi.innerHTML = feature.properties;
+      });
+  }
+}
