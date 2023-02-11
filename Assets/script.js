@@ -41,12 +41,11 @@ const autocompleteInput = new autocomplete.GeocoderAutocomplete(
 );
 
 autocompleteInput.on("select", (location) => {
-  console.log(location.properties.lon);
-  console.log(location.properties.lat);
   console.log(location.properties);
   console.log(location.properties.lat);
   entertainment(location.properties.place_id);
   brew(location.properties.lat, location.properties.lon);
+  hotel(location.properties.place_id);
   map.panTo([location.properties.lat, location.properties.lon]);
 });
 
@@ -71,15 +70,10 @@ autocompleteInput.on("select", (location) => {
       icon: markerIcon,
     }).addTo(map);
 
+    console.log(marker);
     map.panTo([location.properties.lat, location.properties.lon]);
-    brew([location.properties.lat, location.properties.lon]);
-
-    const breweriesUl = document.getElementById("breweries-ul");
-    breweriesUl.innerHTML = "";
   }
 });
-
-console.log(window);
 
 function brew(lat, long) {
   console.log("hello", lat, long);
@@ -96,15 +90,7 @@ function brew(lat, long) {
       const breweriesUl = document.getElementById("breweries-ul");
       for (const brewery of data) {
         const breweryLi = document.createElement("li");
-        breweryLi.innerHTML = brewery.name;
-        breweriesUl.appendChild(breweryLi);
-      }
-      console.log(data);
-      const breweriesUl = document.getElementById("breweries-ul");
-      for (const brewery of data) {
-        const breweryLi = document.createElement("li");
         breweryLi.innerHTML = `${brewery.name}(${brewery.brewery_type}): ${brewery.phone},  ${brewery.street}, ${brewery.website_url}. `;
-        eae991c87e9cf7a48025c2e7acdc383ba2b026;
         breweriesUl.appendChild(breweryLi);
       }
     });
@@ -126,7 +112,7 @@ function entertainment(id) {
   fetch(
     "https://api.geoapify.com/v2/places?categories=entertainment.culture&filter=place:" +
       id +
-      '&limit=10&apiKey=56552ab1bbc6495d8b095457b9993b3e "&per_page=10"'
+      "&limit=10&apiKey=56552ab1bbc6495d8b095457b9993b3e"
   )
     .then((response) => response.json())
     .then((data) => {
@@ -145,4 +131,20 @@ function entertainment(id) {
         entertainmentUl.appendChild(entertainmentLi);
       }
     });
+}
+
+function hotel(id) {
+  var apiUrl = "https://api.geoapify.com/v2/place-details?radius_500.hotel";
+  var apiKey = "56552ab1bbc6495d8b095457b9993b3e";
+  var format = apiUrl + id + "&limit=10&" + "apiKey=" + apiKey;
+  if (format) {
+    fetch(format)
+      .then(function (response) {
+        if (!response.ok) {
+          throw response.json();
+        }
+        return response.json();
+      })
+      .then((data) => {});
+  }
 }
