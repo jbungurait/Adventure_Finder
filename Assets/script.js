@@ -1,3 +1,4 @@
+
 const myapiKey = "6e962b69616246e393f54d1a809bdb41";
 
   // The Leaflet map Object
@@ -34,6 +35,12 @@ console.log(location.properties.lon);
 console.log(location.properties.lat); 
 brew(location.properties.lat, location.properties.lon);
 map.panTo([location.properties.lat, location.properties.lon]);
+autocompleteInput.on("select", (location) => {
+  console.log(location.properties);
+  console.log(location.properties.lat);
+  entertainment(location.properties.place_id);
+  brew(location.properties.lat, location.properties.lon);
+  map.panTo([location.properties.lat, location.properties.lon]);
 });
 
 // generate an marker icon with https://apidocs.geoapify.com/playground/icon
@@ -65,11 +72,31 @@ const markerIcon = L.icon({
       breweriesUl.innerHTML = "";
     }
   });
+autocompleteInput.on("select", (location) => {
+  // Add marker with the selected location
+  if (marker) {
+    marker.remove();
+  }
+
+  if (location) {
+    marker = L.marker([location.properties.lat, location.properties.lon], {
+      icon: markerIcon,
+    }).addTo(map);
+
+    console.log(marker);
+    map.panTo([location.properties.lat, location.properties.lon]);
+
+  }
+});
 
   console.log(window)
 
+
   function brew(lat, long) {
     fetch('https://api.openbrewerydb.org/breweries?by_dist=' + lat + ',' + long + '&per_page=10')
+function brew(lat, long) {
+  console.log("hello", lat, long);
+  fetch("https://api.openbrewerydb.org/breweries?by_dist=" + lat + "," + long + "&per_page=10")
     .then((response) => response.json())
     .then((data) => {
         const breweriesUl = document.getElementById("breweries-ul");
@@ -80,6 +107,13 @@ const markerIcon = L.icon({
             
         }
         
+      console.log(data);
+      const breweriesUl = document.getElementById("breweries-ul");
+      for (const brewery of data) {
+        const breweryLi = document.createElement("li");
+        breweryLi.innerHTML = `${brewery.name}(${brewery.brewery_type}): ${brewery.phone},  ${brewery.street}, ${brewery.website_url}. `;
+        breweriesUl.appendChild(breweryLi);
+      }
     });
 }
 
