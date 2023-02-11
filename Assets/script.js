@@ -110,7 +110,7 @@ function entertainment(id) {
 
   // https://api.geoapify.com/v2/place-details?lat=47.98124882465038&lon=-122.20624354376426&features=radius_500,radius_500.restaurant,walk_10,walk_10.restaurant&apiKey=YOUR_API_KEY
 
-  fetch('https://api.geoapify.com/v2/places?categories=entertainment.culture&filter=place:' + id + '&limit=10&apiKey=56552ab1bbc6495d8b095457b9993b3e')
+  fetch('https://api.geoapify.com/v2/places?categories=entertainment.culture&filter=place:' + id + '&limit=10&apiKey=56552ab1bbc6495d8b095457b9993b3e "&per_page=10"')
   .then((response) => response.json())
     .then((data) => {
       console.log(data.features);
