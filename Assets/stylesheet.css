@@ -1,17 +1,5 @@
-@import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
 
-.map-container {
-  position: relative;
-  min-width: 85vw;
-  min-height: 400px;
-  padding-left: 5%;
-  padding-right: 5%;
-}
 
-body {
-  background-image: linear-gradient(rgb(18, 30, 30), rgb(71, 115, 115));
-  min-height: 100vh;
-}
 
 .autocomplete-panel {
   position: relative;
@@ -40,4 +28,23 @@ body {
 .autocomplete-container input.geoapify-autocomplete-input {
   margin-bottom:0;
   height:36px;
+}
+
+#breweries-list {
+  font-weight: bold;
+  border: 2px solid whitesmoke;
+  width: 600px;
+  height: 400px;
+  background-color: black;
+  float:left;
+  margin-left: 20px;
+  
+}
+
+#breweries-ul {
+  color:whitesmoke;
+}
+
+#breweries-ul .website_url {
+  text-decoration: underline;
 }
