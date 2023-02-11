@@ -126,7 +126,7 @@ function entertainment(id) {
   fetch(
     "https://api.geoapify.com/v2/places?categories=entertainment.culture&filter=place:" +
       id +
-      "&limit=10&apiKey=56552ab1bbc6495d8b095457b9993b3e"
+      '&limit=10&apiKey=56552ab1bbc6495d8b095457b9993b3e "&per_page=10"'
   )
     .then((response) => response.json())
     .then((data) => {
