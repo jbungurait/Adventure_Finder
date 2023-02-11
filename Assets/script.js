@@ -124,5 +124,4 @@ function entertainment(id) {
         entertainmentUl.appendChild(entertainmentLi);
       }
     })
-
 }
