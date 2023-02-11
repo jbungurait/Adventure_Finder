@@ -1,11 +1,22 @@
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+
 .map-container {
   position: relative;
+  min-width: 85vw;
+  min-height: 400px;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+body {
+  background-image: linear-gradient(rgb(18, 30, 30), rgb(71, 115, 115));
+  min-height: 100vh;
 }
 
 .autocomplete-panel {
-  position: absolute;
-  top: 10px;
-  left: 10px;
+  position: relative;
+  top: 55px;
+  left: 20px;
   width: 350px;
   z-index: 1000;
 }
@@ -14,12 +25,16 @@
   position: relative;
 }
 
-html,
-body,
+.header {
+  font-family: 'Bangers', cursive;
+  color: white;
+}
+
 #map {
   width:'400px' ;
   height: '400px';
   margin: 0;
+  border-radius: 25px;
 }
 
 .autocomplete-container input.geoapify-autocomplete-input {
