@@ -1,5 +1,3 @@
-
-
 const myapiKey = "6e962b69616246e393f54d1a809bdb41";
 
 // The Leaflet map Object
@@ -43,6 +41,8 @@ const autocompleteInput = new autocomplete.GeocoderAutocomplete(
 );
 
 autocompleteInput.on("select", (location) => {
+  console.log(location.properties.lon);
+  console.log(location.properties.lat);
   console.log(location.properties);
   console.log(location.properties.lat);
   entertainment(location.properties.place_id);
@@ -71,15 +71,25 @@ autocompleteInput.on("select", (location) => {
       icon: markerIcon,
     }).addTo(map);
 
-    console.log(marker);
     map.panTo([location.properties.lat, location.properties.lon]);
+    brew([location.properties.lat, location.properties.lon]);
 
+    const breweriesUl = document.getElementById("breweries-ul");
+    breweriesUl.innerHTML = "";
   }
 });
 
+console.log(window);
 
-
-
+function brew(lat, long) {
+  console.log("hello", lat, long);
+  fetch(
+    "https://api.openbrewerydb.org/breweries?by_dist=" +
+      lat +
+      "," +
+      long +
+      "&per_page=10"
+  )
 function brew(lat, long) {
   console.log("hello", lat, long);
   fetch("https://api.openbrewerydb.org/breweries?by_dist=" + lat + "," + long + "&per_page=10")
@@ -89,7 +99,15 @@ function brew(lat, long) {
       const breweriesUl = document.getElementById("breweries-ul");
       for (const brewery of data) {
         const breweryLi = document.createElement("li");
+        breweryLi.innerHTML = brewery.name;
+        breweriesUl.appendChild(breweryLi);
+      }
+      console.log(data);
+      const breweriesUl = document.getElementById("breweries-ul");
+      for (const brewery of data) {
+        const breweryLi = document.createElement("li");
         breweryLi.innerHTML = `${brewery.name}(${brewery.brewery_type}): ${brewery.phone},  ${brewery.street}, ${brewery.website_url}. `;
+eae991c87e9cf7a48025c2e7acdc383ba2b026
         breweriesUl.appendChild(breweryLi);
       }
     });
