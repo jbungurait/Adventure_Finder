@@ -96,12 +96,15 @@ function brew(lat, long) {
 
 function entertainment(id) {
   console.log("entertainment", entertainment);
+  var entertainmentUl = document.getElementById("entertainment-ul");
+  entertainmentUl.innerHTML = 'LOADING';
 
   fetch('https://api.geoapify.com/v2/places?categories=entertainment.culture&filter=place:' + id + '&limit=10&apiKey=56552ab1bbc6495d8b095457b9993b3e')
     .then((response) => response.json())
     .then((data) => {
       console.log(data.features);
-      const entertainmentUl = document.getElementById("entertainment-ul");
+      entertainmentUl.innerHTML = '<h5>ENTERTAINMENT:</h5>';
+      console.log(entertainmentUl);
       for (const feature of data.features) {
         console.log(feature)
         const entertainmentLi = document.createElement("li");
@@ -109,6 +112,7 @@ function entertainment(id) {
         entertainmentLi.innerHTML = feature.properties.name;
         //this is meant to provide the entertainment address
         entertainmentLi.innerHTML += '<br> Address: ' + feature.properties.address_line2.replace(', United States of America', '');
+        entertainmentLi.innerHTML += '<br><a href='+feature.properties.datasource.raw.website+'>'+feature.properties.datasource.raw.website+'</a>';
 
 
         //if phone number, then display phone number
