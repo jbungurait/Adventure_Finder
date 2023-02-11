@@ -1,10 +1,11 @@
-
-
+.map-container {
+  position: relative;
+}
 
 .autocomplete-panel {
-  position: relative;
-  top: 55px;
-  left: 20px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
   width: 350px;
   z-index: 1000;
 }
@@ -13,38 +14,15 @@
   position: relative;
 }
 
-.header {
-  font-family: 'Bangers', cursive;
-  color: white;
-}
-
+html,
+body,
 #map {
   width:'400px' ;
   height: '400px';
   margin: 0;
-  border-radius: 25px;
 }
 
 .autocomplete-container input.geoapify-autocomplete-input {
   margin-bottom:0;
   height:36px;
-}
-
-#breweries-list {
-  font-weight: bold;
-  border: 2px solid whitesmoke;
-  width: 600px;
-  height: 400px;
-  background-color: black;
-  float:left;
-  margin-left: 20px;
-  
-}
-
-#breweries-ul {
-  color:whitesmoke;
-}
-
-#breweries-ul .website_url {
-  text-decoration: underline;
 }
