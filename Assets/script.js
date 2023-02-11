@@ -97,31 +97,26 @@ function brew(lat, long) {
 function entertainment(id) {
   console.log("entertainment", entertainment);
 
-  // var id = '516802fd297b965ec059f02898494ecf4740f00101f901499f030000000000c0020692030753656174746c65';
-  
-  // console.log("restaurants", lat, long); 
-  // var lat=47.97923987434868;
-  // var lon=-122.2099625054125;
-  //FYI-THIS API SEEMS TO USE LON instead of LONG (Brew API uses)
-  // fetch('https://api.geoapify.com/v2/place-details?id=' + id + '&features=details,details.names,walk_1000,walk_1000.restaurant&apiKey=56552ab1bbc6495d8b095457b9993b3e')
-
-  // https://api.geoapify.com/v2/place-details?lat=47.98124882465038&lon=-122.20624354376426&features=radius_500,radius_500.restaurant,walk_10,walk_10.restaurant&apiKey=YOUR_API_KEY
-
   fetch('https://api.geoapify.com/v2/places?categories=entertainment.culture&filter=place:' + id + '&limit=10&apiKey=56552ab1bbc6495d8b095457b9993b3e')
-  .then((response) => response.json())
+    .then((response) => response.json())
     .then((data) => {
       console.log(data.features);
-      const entertainmentUl = document.getElementById("rest-ul");
+      const entertainmentUl = document.getElementById("entertainment-ul");
       for (const feature of data.features) {
-        console.log(feature.properties.name)
+        console.log(feature)
         const entertainmentLi = document.createElement("li");
         //this is meant to provide the entertainment name
         entertainmentLi.innerHTML = feature.properties.name;
         //this is meant to provide the entertainment address
-        entertainmentLi.innerHTML = data.features[1].properties.address_line2;
-        //this is meant to be the phone number
-        entertainmentLi.innerHTML = data.features[1].properties.datasource.raw[1];
-        entertainmentUl.appendChild(entertainmentLi);
+        entertainmentLi.innerHTML += '<br> Address: ' + feature.properties.address_line2.replace(', United States of America', '');
+
+
+        //if phone number, then display phone number
+        if (feature.properties.datasource.raw.phone) {
+
+          entertainmentLi.innerHTML += '<br> Phone:' + '<a href="tel:' + feature.properties.datasource.raw.phone + '">' + feature.properties.datasource.raw.phone + '</a>';
+          entertainmentUl.appendChild(entertainmentLi);
+        }
       }
     })
 }
