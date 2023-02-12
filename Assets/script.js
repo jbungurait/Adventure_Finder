@@ -41,8 +41,8 @@ const autocompleteInput = new autocomplete.GeocoderAutocomplete(
 );
 
 autocompleteInput.on("select", (location) => {
-  console.log(location.properties);
-  console.log(location.properties.lat);
+  // console.log(location.properties);
+  // console.log(location.properties.lat);
   entertainment(location.properties.place_id);
   brew(location.properties.lat, location.properties.lon);
   hotel(location.properties.place_id);
@@ -70,13 +70,13 @@ autocompleteInput.on("select", (location) => {
       icon: markerIcon,
     }).addTo(map);
 
-    console.log(marker);
+    // console.log(marker);
     map.panTo([location.properties.lat, location.properties.lon]);
   }
 });
 
 function brew(lat, long) {
-  console.log("hello", lat, long);
+  // console.log("hello", lat, long);
   fetch(
     "https://api.openbrewerydb.org/breweries?by_dist=" +
       lat +
@@ -86,7 +86,7 @@ function brew(lat, long) {
   )
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
+      // console.log(data);
       const breweriesUl = document.getElementById("breweries-ul");
       for (const brewery of data) {
         const breweryLi = document.createElement("li");
@@ -97,7 +97,7 @@ function brew(lat, long) {
 }
 
 function entertainment(id) {
-  console.log("entertainment", entertainment);
+  // console.log("entertainment", entertainment);
 
   fetch(
     "https://api.geoapify.com/v2/places?categories=entertainment.culture&filter=place:" +
@@ -106,10 +106,10 @@ function entertainment(id) {
   )
     .then((response) => response.json())
     .then((data) => {
-      console.log(data.features);
+      // console.log(data.features);
       const entertainmentUl = document.getElementById("entertainment-ul");
       for (const feature of data.features) {
-        console.log(feature);
+        // console.log(feature);
         const entertainmentLi = document.createElement("li");
         //this is meant to provide the entertainment name
         entertainmentLi.innerHTML = feature.properties.name;
@@ -135,13 +135,21 @@ function entertainment(id) {
       }
     });
 }
-
+// hotel api
 function hotel(id) {
-  var apiUrl = "https://api.geoapify.com/v2/place-details?radius_500.hotel";
-  var apiKey = "56552ab1bbc6495d8b095457b9993b3e";
-  var format = apiUrl + id + "&limit=10&" + "apiKey=" + apiKey;
-  if (format) {
-    fetch(format)
+  var apiUrl = "https://api.geoapify.com/v2/places?";
+  var apiKey2 = "716cf20b2b0d4e18bf967f6f679eeeac";
+  var placeDetails =
+    apiUrl +
+    "categories=accommodation.hotel,accommodation.motel &filter=place:" +
+    id +
+    "&limit=10" +
+    "&apiKey=" +
+    apiKey2;
+  if (!placeDetails) {
+    console.log("Err: no placeDetails. line:150");
+  } else {
+    fetch(placeDetails)
       .then(function (response) {
         if (!response.ok) {
           throw response.json();
@@ -149,8 +157,46 @@ function hotel(id) {
         return response.json();
       })
       .then((data) => {
-        var hotelLi = d.createElement("li");
-        hotelLi.innerHTML = feature.properties;
+        console.log("data",data)
+        const hotelUl = document.getElementById("hotel-ul");
+        for (const feature of data.features) {
+          console.log(
+            "Hotel response Data: ",
+            feature.properties.address_line2
+          );
+          const hotelLi = document.createElement("li");
+          // const hotelAddress =  document.createElement("li")
+
+          hotelLi.innerHTML = feature.properties.name;
+          hotelLi.innerHTML +=
+            "<br> Address: " +
+            feature.properties.address_line2.replace(
+              ", United States of America",
+              ""
+            );
+          //if phone number, then display phone number
+          if (feature.properties.datasource.raw.phone) {
+            hotelLi.innerHTML +=
+              "<br> Phone:" +
+              '<a href="tel:' +
+              feature.properties.datasource.raw.phone +
+              '">' +
+              feature.properties.datasource.raw.phone.replace(
+                "+1",
+                ""
+              ) +
+              "</a>";
+            hotelUl.appendChild(hotelLi);
+          }
+          if(feature.properties.datasource.raw.website)
+          hotelLi.innerHTML +=
+          "<br> Website:" +
+          '<a href="site:'+
+          feature.properties.datasource.raw.website +
+          '">' +
+          feature.properties.datasource.raw.website
+          // hotelAddress.textContent = feature.properties.address_line2
+        }
       });
   }
 }
