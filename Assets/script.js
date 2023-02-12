@@ -157,7 +157,7 @@ function hotel(id) {
         return response.json();
       })
       .then((data) => {
-        console.log("data",data)
+        console.log("data", data);
         const hotelUl = document.getElementById("hotel-ul");
         for (const feature of data.features) {
           console.log(
@@ -165,8 +165,6 @@ function hotel(id) {
             feature.properties.address_line2
           );
           const hotelLi = document.createElement("li");
-          // const hotelAddress =  document.createElement("li")
-
           hotelLi.innerHTML = feature.properties.name;
           hotelLi.innerHTML +=
             "<br> Address: " +
@@ -174,28 +172,24 @@ function hotel(id) {
               ", United States of America",
               ""
             );
-          //if phone number, then display phone number
+
           if (feature.properties.datasource.raw.phone) {
             hotelLi.innerHTML +=
               "<br> Phone:" +
               '<a href="tel:' +
               feature.properties.datasource.raw.phone +
               '">' +
-              feature.properties.datasource.raw.phone.replace(
-                "+1",
-                ""
-              ) +
+              feature.properties.datasource.raw.phone.replace("+1", "") +
               "</a>";
             hotelUl.appendChild(hotelLi);
           }
-          if(feature.properties.datasource.raw.website)
-          hotelLi.innerHTML +=
-          "<br> Website:" +
-          '<a href="site:'+
-          feature.properties.datasource.raw.website +
-          '">' +
-          feature.properties.datasource.raw.website
-          // hotelAddress.textContent = feature.properties.address_line2
+          if (feature.properties.datasource.raw.website)
+            hotelLi.innerHTML +=
+              "<br> Website:" +
+              '<a href="site:' +
+              feature.properties.datasource.raw.website +
+              '">' +
+              feature.properties.datasource.raw.website;
         }
       });
   }
