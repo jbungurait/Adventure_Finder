@@ -109,16 +109,16 @@ function entertainment(id) {
         console.log(feature)
         const entertainmentLi = document.createElement("li");
         //this is meant to provide the entertainment name
-        entertainmentLi.innerHTML = feature.properties.name;
+        entertainmentLi.innerHTML = '<b>' + feature.properties.name + '</b>';
         //this is meant to provide the entertainment address
-        entertainmentLi.innerHTML += '<br> Address: ' + feature.properties.address_line2.replace(', United States of America', '');
+        entertainmentLi.innerHTML += '<br><b>Address:</b> ' + feature.properties.address_line2.replace(', United States of America', '');
         entertainmentLi.innerHTML += '<br><a href='+feature.properties.datasource.raw.website+'>'+feature.properties.datasource.raw.website+'</a>';
 
 
         //if phone number, then display phone number
         if (feature.properties.datasource.raw.phone) {
 
-          entertainmentLi.innerHTML += '<br> Phone:' + '<a href="tel:' + feature.properties.datasource.raw.phone + '">' + feature.properties.datasource.raw.phone + '</a>';
+          entertainmentLi.innerHTML += '<br> Tel:' + '<a href="tel:' + feature.properties.datasource.raw.phone + '">' + feature.properties.datasource.raw.phone + '</a>';
           entertainmentUl.appendChild(entertainmentLi);
         }
       }
