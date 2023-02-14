@@ -41,3 +41,30 @@ body {
   margin-bottom:0;
   height:36px;
 }
+
+.navbar-brand {
+ font-size: 50px;
+}
+body {
+  background-color: rgba(0, 0, 0, 0.89);
+}
+
+#Entertainment {
+  font-size: 30px;
+  color: green;
+  font-weight: bold;
+}
+#Breweries {
+  font-size:30px;
+  color:green;
+  font-weight: bold;
+}
+
+#breweries-ul {
+  color: whitesmoke;
+  
+}
+#entertainment-ul {
+  color:whitesmoke;
+  
+}
