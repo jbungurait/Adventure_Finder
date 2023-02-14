@@ -72,6 +72,7 @@ autocompleteInput.on("select", (location) => {
 
     // console.log(marker);
     map.panTo([location.properties.lat, location.properties.lon]);
+
   }
 });
 
@@ -86,12 +87,18 @@ function brew(lat, long) {
   )
     .then((response) => response.json())
     .then((data) => {
-      // console.log(data);
-      const breweriesUl = document.getElementById("breweries-ul");
+
+      console.log(data);
+      var breweriesUl = document.getElementById("breweries-ul");
+      breweriesUl.innerHTML = "";
+      breweriesUl = document.getElementById("breweries-ul");
+
       for (const brewery of data) {
         const breweryLi = document.createElement("li");
+        
         breweryLi.innerHTML = `${brewery.name}(${brewery.brewery_type}): ${brewery.phone},  ${brewery.street}, ${brewery.website_url}. `;
         breweriesUl.appendChild(breweryLi);
+        
       }
     });
 }
@@ -114,12 +121,14 @@ function entertainment(id) {
         //this is meant to provide the entertainment name
         entertainmentLi.innerHTML = feature.properties.name;
         //this is meant to provide the entertainment address
+
         entertainmentLi.innerHTML +=
           "<br> Address: " +
           feature.properties.address_line2.replace(
             ", United States of America",
             ""
           );
+
 
         //if phone number, then display phone number
         if (feature.properties.datasource.raw.phone) {
@@ -133,6 +142,7 @@ function entertainment(id) {
           entertainmentUl.appendChild(entertainmentLi);
         }
       }
+
     });
 }
 // hotel api
@@ -200,3 +210,4 @@ function hotel(id) {
       });
   }
 }
+
