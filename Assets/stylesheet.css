@@ -17,11 +17,13 @@
 }
 
 .autocomplete-panel {
+
   position: absolute;
-  top: 10px;
-  left: 110px;
+  top: 5%;
+  left: 13%;
   width: 350px;
   z-index: 1000;
+
 }
 
 .autocomplete-container {
@@ -44,21 +46,25 @@
 
 #hotel-ul {
   color:whitesmoke;
+  padding: 0 1em
   
 }
 
 #breweries-ul {
   color: whitesmoke;
+  padding: 0 1em
   
 }
 #entertainment-ul {
   color:whitesmoke;
+  padding: 0 1em
   
 }
 .attractions {
   font-size: 30px;
   color: whitesmoke;
   font-weight: bold;
+  padding: 0 1em
 }
 
 html {
