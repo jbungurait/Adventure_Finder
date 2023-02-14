@@ -185,11 +185,7 @@ function hotel(id) {
           }
           if (feature.properties.datasource.raw.website)
             hotelLi.innerHTML +=
-              "<br> Website:" +
-              '<a href="site:' +
-              feature.properties.datasource.raw.website +
-              '">' +
-              feature.properties.datasource.raw.website;
+              "<br><a href="+feature.properties.datasource.raw.website+">"+feature.properties.datasource.raw.website + "</a";
         }
       });
   }
