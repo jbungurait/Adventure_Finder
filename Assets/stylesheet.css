@@ -1,11 +1,25 @@
+
+.header {
+  font-family: 'Bangers', cursive;
+  color: whitesmoke;
+  
+}
+
+
+
 .map-container {
   position: relative;
+  min-width: 75%vw;
+  min-height: 400px;
+  padding-left: 10%;
+  padding-right: 10%;
+
 }
 
 .autocomplete-panel {
   position: absolute;
   top: 10px;
-  left: 10px;
+  left: 110px;
   width: 350px;
   z-index: 1000;
 }
@@ -14,12 +28,11 @@
   position: relative;
 }
 
-html,
-body,
+
 #map {
   width:'400px' ;
   height: '400px';
- 
+ border-radius: 20px;
 }
 
 .autocomplete-container input.geoapify-autocomplete-input {
@@ -27,22 +40,11 @@ body,
   height:36px;
 }
 
-.navbar-brand {
- font-size: 50px;
-}
-body {
-  background-color: rgba(0, 0, 0, 0.89);
-}
 
-#Entertainment {
-  font-size: 30px;
-  color: green;
-  font-weight: bold;
-}
-#Breweries {
-  font-size:30px;
-  color:green;
-  font-weight: bold;
+
+#hotel-ul {
+  color:whitesmoke;
+  
 }
 
 #breweries-ul {
@@ -51,5 +53,15 @@ body {
 }
 #entertainment-ul {
   color:whitesmoke;
+  
+}
+.attractions {
+  font-size: 30px;
+  color: whitesmoke;
+  font-weight: bold;
+}
+
+html {
+  background-image: linear-gradient(black, rgba(0, 0, 0, 0.795))  !important;
   
 }
