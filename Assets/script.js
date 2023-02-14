@@ -118,7 +118,7 @@ function entertainment(id) {
         //if phone number, then display phone number
         if (feature.properties.datasource.raw.phone) {
 
-          entertainmentLi.innerHTML += '<br> Phone:' + '<a href="tel:' + feature.properties.datasource.raw.phone + '">' + feature.properties.datasource.raw.phone + '</a>';
+          entertainmentLi.innerHTML += '<br><b> Phone:</b>' + '<a href="tel:' + feature.properties.datasource.raw.phone + '">' + feature.properties.datasource.raw.phone + '</a>';
           entertainmentUl.appendChild(entertainmentLi);
         }
       }
