@@ -112,7 +112,7 @@ function entertainment(id) {
         entertainmentLi.innerHTML = '<b>' + feature.properties.name + '</b>';
         //this is meant to provide the entertainment address
         entertainmentLi.innerHTML += '<br><b>Address:</b>' + feature.properties.address_line2.replace(', United States of America', '');
-        entertainmentLi.innerHTML += '<br><a href='+feature.properties.datasource.raw.website+'>'+feature.properties.datasource.raw.website+'</a>';
+        entertainmentLi.innerHTML += '<br><a href=' + feature.properties.datasource.raw.website + '>' + feature.properties.datasource.raw.website + '</a>';
 
 
         //if phone number, then display phone number
