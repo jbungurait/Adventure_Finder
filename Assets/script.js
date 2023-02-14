@@ -73,7 +73,7 @@ autocompleteInput.on("select", (location) => {
 
       brew([location.properties.lat, location.properties.ion]);
 
-});
+};
 
 // generate an marker icon with https://apidocs.geoapify.com/playground/icon
 const markerIcon = L.icon({
@@ -116,7 +116,7 @@ function brew(lat, long) {
       const breweriesUl = document.getElementById("breweries-ul");
       breweriesUl.innerHTML = "";
     }
-  });
+  );
   autocompleteInput.on("select", (location) => {
     // Add marker with the selected location
     if (marker) {
@@ -188,8 +188,8 @@ function entertainment(id) {
           entertainmentUl.appendChild(entertainmentLi);
         }
       }
-    })
-}})}}})
+    }
+        )};
 
 
 // hotel api
@@ -257,4 +257,4 @@ function hotel(id) {
       });
   }
 }
-
+          }})}}}})})})
