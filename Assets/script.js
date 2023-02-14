@@ -202,3 +202,4 @@ function hotel(id) {
   }
 }
 
+console.log(entertainment)
