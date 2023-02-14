@@ -1,5 +1,11 @@
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+
 .map-container {
   position: relative;
+  min-width: 75%vw;
+  min-height: 400px;
+  padding-left: 10%;
+  padding-right: 10%;
 }
 
 .autocomplete-panel {
@@ -14,8 +20,6 @@
   position: relative;
 }
 
-html,
-body,
 #map {
   width:'400px' ;
   height: '400px';
@@ -30,8 +34,15 @@ body,
 .navbar-brand {
  font-size: 50px;
 }
+
 body {
   background-color: rgba(0, 0, 0, 0.89);
+}
+
+#Hotels{
+font-size: 30px;
+color: green;
+font-weight: bold;
 }
 
 #Entertainment {
@@ -39,6 +50,7 @@ body {
   color: green;
   font-weight: bold;
 }
+
 #Breweries {
   font-size:30px;
   color:green;
@@ -49,6 +61,7 @@ body {
   color: whitesmoke;
   
 }
+
 #entertainment-ul {
   color:whitesmoke;
   
