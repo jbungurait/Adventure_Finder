@@ -99,6 +99,7 @@ function brew(lat, long) {
         breweryLi.innerHTML = `${brewery.name}(${brewery.brewery_type}): ${brewery.phone},  ${brewery.street}, ${brewery.website_url}. `;
         breweriesUl.appendChild(breweryLi);
         
+        
       }
     });
 }
