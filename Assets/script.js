@@ -39,10 +39,14 @@ const autocompleteInput = new autocomplete.GeocoderAutocomplete(
     type: "city",
   }
 );
+var entertainmentDiv = document.getElementById("entertainment-ul")
+var hotelDiv = document.getElementById("hotel-ul")
 
 autocompleteInput.on("select", (location) => {
   // console.log(location.properties);
   // console.log(location.properties.lat);
+  entertainmentDiv.textContent = "";
+  hotelDiv.textContent = "";
   entertainment(location.properties.place_id);
   brew(location.properties.lat, location.properties.lon);
   hotel(location.properties.place_id);
@@ -106,6 +110,7 @@ function brew(lat, long) {
 
 function entertainment(id) {
   // console.log("entertainment", entertainment);
+  var entertainmentUl = document.getElementById("entertainment-ul");
 
   fetch(
     "https://api.geoapify.com/v2/places?categories=entertainment.culture&filter=place:" +
@@ -129,6 +134,7 @@ function entertainment(id) {
             ", United States of America",
             ""
           );
+        entertainmentLi.innerHTML += '<br><a href=' + feature.properties.datasource.raw.website + '>' + feature.properties.datasource.raw.website + '</a>';
 
 
         //if phone number, then display phone number
@@ -146,6 +152,20 @@ function entertainment(id) {
 
     });
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // hotel api
 function hotel(id) {
   var apiUrl = "https://api.geoapify.com/v2/places?";
