@@ -1,4 +1,3 @@
-
 const myapiKey = "6e962b69616246e393f54d1a809bdb41";
 
 // The Leaflet map Object
@@ -72,6 +71,9 @@ autocompleteInput.on("select", (location) => {
 
     console.log(marker);
     map.panTo([location.properties.lat, location.properties.lon]);
+    
+
+    
 
   }
 });
@@ -84,11 +86,15 @@ function brew(lat, long) {
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
-      const breweriesUl = document.getElementById("breweries-ul");
+      var breweriesUl = document.getElementById("breweries-ul");
+      breweriesUl.innerHTML = "";
+      breweriesUl = document.getElementById("breweries-ul");
       for (const brewery of data) {
         const breweryLi = document.createElement("li");
+        
         breweryLi.innerHTML = `${brewery.name}(${brewery.brewery_type}): ${brewery.phone},  ${brewery.street}, ${brewery.website_url}. `;
         breweriesUl.appendChild(breweryLi);
+        
       }
     });
 }
@@ -109,6 +115,7 @@ function entertainment(id) {
         entertainmentLi.innerHTML = feature.properties.name;
         //this is meant to provide the entertainment address
         entertainmentLi.innerHTML += '<br> Address: ' + feature.properties.address_line2.replace(', United States of America', '');
+       
 
 
         //if phone number, then display phone number
@@ -119,4 +126,4 @@ function entertainment(id) {
         }
       }
     })
-}
+  }
