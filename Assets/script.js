@@ -39,10 +39,8 @@ const autocompleteInput = new autocomplete.GeocoderAutocomplete(
     type: "city",
   }
 );
-var entertainmentDiv = document.getElementById("entertainment-ul");
-var hotelDiv = document.getElementById("hotel-ul");
-var entertainmentDiv = document.getElementById("entertainment-ul");
-var hotelDiv = document.getElementById("hotel-ul");
+var entertainmentDiv = document.getElementById("entertainment-ul")
+var hotelDiv = document.getElementById("hotel-ul")
 
 autocompleteInput.on("select", (location) => {
   // console.log(location.properties);
@@ -78,6 +76,7 @@ autocompleteInput.on("select", (location) => {
 
     // console.log(marker);
     map.panTo([location.properties.lat, location.properties.lon]);
+
   }
 });
 
@@ -92,6 +91,7 @@ function brew(lat, long) {
   )
     .then((response) => response.json())
     .then((data) => {
+
       console.log(data);
       const breweriesUl = document.getElementById("breweries-ul");
       breweriesUl.innerHTML = "";
@@ -99,10 +99,14 @@ function brew(lat, long) {
       for (const brewery of data) {
         const breweryLi = document.createElement("li");
 
-        breweryLi.innerHTML = `<span class="business-name">${brewery.name}</span> (<span class="brewery-type">${brewery.brewery_type}</span>)<div>Address:<div> ${brewery.street}, ${brewery.city}, ${brewery.state} ${brewery.postal_code}  
+        breweryLi.innerHTML = `<span class="business-name">${brewery.name}</span> (<span class="brewery-type">${brewery.brewery_type}</span>)<div>Address:<div>${brewery.street}, ${brewery.city}, ${brewery.state} ${brewery.postal_code} 
+        
+        
         
         <div>Phone: <a href="tel:Phone${brewery.phone}" >${brewery.phone}</a></div>
-          
+        
+        
+       
        <div> <a href="${brewery.website_url}">${brewery.website_url}</a> 
        </div>`;
 
@@ -114,9 +118,6 @@ function brew(lat, long) {
 
 function entertainment(id) {
   // console.log("entertainment", entertainment);
-
-  var entertainmentUl = document.getElementById("entertainment-ul");
-
 
   fetch(
     "https://api.geoapify.com/v2/places?categories=entertainment.culture&filter=place:" +
@@ -161,16 +162,12 @@ function entertainment(id) {
     entertainmentUl.appendChild(entertainmentPhone);
     entertainmentUl.appendChild(entertainmentWebsite);
   }
-        entertainmentLi.innerHTML +=
-          "<br><a href=" +
-          feature.properties.datasource.raw.website +
-          ">" +
-          feature.properties.datasource.raw.website +
-          "</a>";
 
       }
+
     });
 }
+
 
 // hotel api
 function hotel(id) {
@@ -197,7 +194,6 @@ function hotel(id) {
         console.log("data", data);
         const hotelUl = document.getElementById("hotel-ul");
         for (const feature of data.features) {
-
           
 
           console.log(
@@ -208,41 +204,29 @@ function hotel(id) {
          
           hotelLi.innerHTML = `<span class="business-name">${feature.properties.name}</span>`;
 
-          const hotelName = document.createElement("li");
-          hotelName.setAttribute("class","business-name");
-          hotelName.innerHTML = feature.properties.name;
-          const hotelAddress = document.createElement("li");
-          hotelAddress.innerHTML +=
-            "Address: " +
-
+          hotelLi.innerHTML +=
+            "<br> Address: " +
             feature.properties.address_line2.replace(
               ", United States of America",
               ""
             );
-            hotelUl.appendChild(hotelName);
+
           if (feature.properties.datasource.raw.phone) {
-            const hotelPhone = document.createElement("li");
-            hotelPhone.innerHTML +=
-              "Phone:" +
+            hotelLi.innerHTML +=
+              "<br> Phone:" +
               '<a href="tel:' +
               feature.properties.datasource.raw.phone +
               '">' +
               feature.properties.datasource.raw.phone.replace("+1", "") +
               "</a>";
-            hotelUl.appendChild(hotelPhone);
+            hotelUl.appendChild(hotelLi);
           }
-          if (feature.properties.datasource.raw.website) {
-            const hotelWebsite = document.createElement("li");
-            hotelWebsite.innerHTML +=
-              "<a href=" +
-              feature.properties.datasource.raw.website +
-              ">" +
-              feature.properties.datasource.raw.website +
-              "</a";
-            hotelUl.appendChild(hotelWebsite);
-          }
+          if (feature.properties.datasource.raw.website)
+            hotelLi.innerHTML +=
+              "<br><a href=" + feature.properties.datasource.raw.website + ">" + feature.properties.datasource.raw.website + "</a";
         }
       });
   }
 }
+
 console.log(entertainment)
