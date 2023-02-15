@@ -39,10 +39,14 @@ const autocompleteInput = new autocomplete.GeocoderAutocomplete(
     type: "city",
   }
 );
+var entertainmentDiv = document.getElementById("entertainment-ul")
+var hotelDiv = document.getElementById("hotel-ul")
 
 autocompleteInput.on("select", (location) => {
   // console.log(location.properties);
   // console.log(location.properties.lat);
+  entertainmentDiv.textContent = "";
+  hotelDiv.textContent = "";
   entertainment(location.properties.place_id);
   brew(location.properties.lat, location.properties.lon);
   hotel(location.properties.place_id);
@@ -80,26 +84,36 @@ function brew(lat, long) {
   // console.log("hello", lat, long);
   fetch(
     "https://api.openbrewerydb.org/breweries?by_dist=" +
-      lat +
-      "," +
-      long +
-      "&per_page=10"
+    lat +
+    "," +
+    long +
+    "&per_page=10"
   )
     .then((response) => response.json())
     .then((data) => {
 
       console.log(data);
-      var breweriesUl = document.getElementById("breweries-ul");
+      const breweriesUl = document.getElementById("breweries-ul");
       breweriesUl.innerHTML = "";
-      breweriesUl = document.getElementById("breweries-ul");
+
 
       for (const brewery of data) {
         const breweryLi = document.createElement("li");
+
+        breweryLi.innerHTML = `<span class="business-name">${brewery.name}</span> (<span class="brewery-type">${brewery.brewery_type}</span>)<div>Address:<div> ${brewery.street}, ${brewery.city}, ${brewery.state} ${brewery.postal_code} 
         
-        breweryLi.innerHTML = `${brewery.name}(${brewery.brewery_type}): ${brewery.phone},  ${brewery.street}, ${brewery.website_url}. `;
+        
+        
+        <div>Phone: <a href="tel:Phone${brewery.phone}" >${brewery.phone}</a></div>
+        
+        
+       
+       <div> <a href="${brewery.website_url}">${brewery.website_url}</a> 
+       </div>`;
+
         breweriesUl.appendChild(breweryLi);
-        
-        
+
+
       }
     });
 }
@@ -107,10 +121,11 @@ function brew(lat, long) {
 function entertainment(id) {
   // console.log("entertainment", entertainment);
 
+
   fetch(
     "https://api.geoapify.com/v2/places?categories=entertainment.culture&filter=place:" +
-      id +
-      "&limit=10&apiKey=56552ab1bbc6495d8b095457b9993b3e"
+    id +
+    "&limit=10&apiKey=56552ab1bbc6495d8b095457b9993b3e"
   )
     .then((response) => response.json())
     .then((data) => {
@@ -118,34 +133,66 @@ function entertainment(id) {
       const entertainmentUl = document.getElementById("entertainment-ul");
       for (const feature of data.features) {
         // console.log(feature);
-        const entertainmentLi = document.createElement("li");
+        const entertainmentName = document.createElement("li");
+        entertainmentName.setAttribute("class", "business-name");
         //this is meant to provide the entertainment name
-        entertainmentLi.innerHTML = feature.properties.name;
+        entertainmentName.innerHTML = feature.properties.name;
         //this is meant to provide the entertainment address
-
-        entertainmentLi.innerHTML +=
-          "<br> Address: " +
+        const entertainmentAddress = document.createElement("li");
+        entertainmentAddress.innerHTML +=
+          " Address: " +
           feature.properties.address_line2.replace(
             ", United States of America",
-            ""
-          );
+            ""    );
 
 
-        //if phone number, then display phone number
-        if (feature.properties.datasource.raw.phone) {
-          entertainmentLi.innerHTML +=
-            "<br> Phone:" +
-            '<a href="tel:' +
-            feature.properties.datasource.raw.phone +
-            '">' +
-            feature.properties.datasource.raw.phone +
-            "</a>";
-          entertainmentUl.appendChild(entertainmentLi);
-        }
+            const entertainmentWebsite = document.createElement("li");
+            entertainmentWebsite.innerHTML += '<a href=' + feature.properties.datasource.raw.website + '>' + feature.properties.datasource.raw.website + '</a>';
+       
+            entertainmentUl.appendChild(entertainmentName);
+            entertainmentUl.appendChild(entertainmentAddress);
+             
+
+   //if phone number, then display phone number
+   if (feature.properties.datasource.raw.phone) {
+    const entertainmentPhone = document.createElement("li");
+    entertainmentPhone.innerHTML +=
+      " Phone:" +
+      '<a href="tel:' +
+      feature.properties.datasource.raw.phone +
+      '">' +
+      feature.properties.datasource.raw.phone +
+      "</a>";
+    entertainmentUl.appendChild(entertainmentPhone);
+    entertainmentUl.appendChild(entertainmentWebsite);
+  }
+
+       
+        
+        
+
+
+
+
+     
       }
 
     });
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // hotel api
 function hotel(id) {
   var apiUrl = "https://api.geoapify.com/v2/places?";
@@ -196,9 +243,12 @@ function hotel(id) {
           }
           if (feature.properties.datasource.raw.website)
             hotelLi.innerHTML +=
-              "<br><a href="+feature.properties.datasource.raw.website+">"+feature.properties.datasource.raw.website + "</a";
+              "<br><a href=" + feature.properties.datasource.raw.website + ">" + feature.properties.datasource.raw.website + "</a";
         }
       });
   }
 }
+
+console.log(entertainment)
+
 
