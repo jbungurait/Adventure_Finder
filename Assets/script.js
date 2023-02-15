@@ -96,7 +96,6 @@ function brew(lat, long) {
       const breweriesUl = document.getElementById("breweries-ul");
       breweriesUl.innerHTML = "";
 
-
       for (const brewery of data) {
         const breweryLi = document.createElement("li");
 
@@ -113,15 +112,12 @@ function brew(lat, long) {
 
         breweriesUl.appendChild(breweryLi);
 
-
       }
     });
 }
 
 function entertainment(id) {
   // console.log("entertainment", entertainment);
-  var entertainmentUl = document.getElementById("entertainment-ul");
-
 
   fetch(
     "https://api.geoapify.com/v2/places?categories=entertainment.culture&filter=place:" +
@@ -144,9 +140,7 @@ function entertainment(id) {
           " Address: " +
           feature.properties.address_line2.replace(
             ", United States of America",
-
             ""    );
-
 
             const entertainmentWebsite = document.createElement("li");
             entertainmentWebsite.innerHTML += '<a href=' + feature.properties.datasource.raw.website + '>' + feature.properties.datasource.raw.website + '</a>';
@@ -169,24 +163,10 @@ function entertainment(id) {
     entertainmentUl.appendChild(entertainmentWebsite);
   }
 
-            ""
-          );
-        entertainmentLi.innerHTML += '<br><a href=' + feature.properties.datasource.raw.website + '>' + feature.properties.datasource.raw.website + '</a>';
-
-
-       
-        
-        
-
-
-
-
-     
       }
 
     });
 }
-
 
 
 // hotel api
@@ -249,9 +229,6 @@ function hotel(id) {
   }
 }
 
-
 console.log(entertainment)
-
-
 
 
