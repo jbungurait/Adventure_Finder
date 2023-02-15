@@ -94,7 +94,6 @@ function brew(lat, long) {
       const breweriesUl = document.getElementById("breweries-ul");
       breweriesUl.innerHTML = "";
 
-
       for (const brewery of data) {
         const breweryLi = document.createElement("li");
 
@@ -113,7 +112,9 @@ function brew(lat, long) {
 
 function entertainment(id) {
   // console.log("entertainment", entertainment);
+
   var entertainmentUl = document.getElementById("entertainment-ul");
+
 
   fetch(
     "https://api.geoapify.com/v2/places?categories=entertainment.culture&filter=place:" +
@@ -136,7 +137,6 @@ function entertainment(id) {
           " Address: " +
           feature.properties.address_line2.replace(
             ", United States of America",
-
             ""    );
 
             const entertainmentWebsite = document.createElement("li");
@@ -159,6 +159,7 @@ function entertainment(id) {
     entertainmentUl.appendChild(entertainmentPhone);
     entertainmentUl.appendChild(entertainmentWebsite);
   }
+
            
           );
         entertainmentLi.innerHTML +=
@@ -167,9 +168,11 @@ function entertainment(id) {
           ">" +
           feature.properties.datasource.raw.website +
           "</a>";
+
       }
     });
 }
+
 // hotel api
 function hotel(id) {
   var apiUrl = "https://api.geoapify.com/v2/places?";
@@ -195,12 +198,27 @@ function hotel(id) {
         console.log("data", data);
         const hotelUl = document.getElementById("hotel-ul");
         for (const feature of data.features) {
+
+          
+
+          console.log(
+            "Hotel response Data: ",
+            feature.properties.address_line2
+          );
+          const hotelLi = document.createElement("li");
+         
+          hotelLi.innerHTML = `<span class="business-name">${feature.properties.name}</span>`;
+
+          hotelLi.innerHTML +=
+            "<br> Address: " +
+
           const hotelName = document.createElement("li");
           hotelName.setAttribute("class","business-name");
           hotelName.innerHTML = feature.properties.name;
           const hotelAddress = document.createElement("li");
           hotelAddress.innerHTML +=
             "Address: " +
+
             feature.properties.address_line2.replace(
               ", United States of America",
               ""
@@ -232,4 +250,8 @@ function hotel(id) {
   }
 }
 
-console.log(entertainment);
+
+console.log(entertainment)
+
+
+
