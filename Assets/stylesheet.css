@@ -56,10 +56,6 @@
 }
 
 html {
-<<<<<<< HEAD
-  background-image: linear-gradient(black, rgba(0, 0, 0, 0.795)) !important;
-}
-=======
   background-image: linear-gradient(black, rgba(0, 0, 0, 0.795))  !important;
   
 }
@@ -97,14 +93,3 @@ html {
   font-size: 20px;
   color: blue;
 }
-
-
-
-
-
-
-
-
-
-
->>>>>>> 06e0e6f9b90761bb6b484d0b5b253939f68a370c
