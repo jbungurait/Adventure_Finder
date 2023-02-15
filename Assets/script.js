@@ -39,8 +39,8 @@ const autocompleteInput = new autocomplete.GeocoderAutocomplete(
     type: "city",
   }
 );
-var entertainmentDiv = document.getElementById("entertainment-ul")
-var hotelDiv = document.getElementById("hotel-ul")
+var entertainmentDiv = document.getElementById("entertainment-ul");
+var hotelDiv = document.getElementById("hotel-ul");
 
 autocompleteInput.on("select", (location) => {
   // console.log(location.properties);
@@ -76,7 +76,6 @@ autocompleteInput.on("select", (location) => {
 
     // console.log(marker);
     map.panTo([location.properties.lat, location.properties.lon]);
-
   }
 });
 
@@ -91,7 +90,6 @@ function brew(lat, long) {
   )
     .then((response) => response.json())
     .then((data) => {
-
       console.log(data);
       var breweriesUl = document.getElementById("breweries-ul");
       breweriesUl.innerHTML = "";
@@ -99,11 +97,9 @@ function brew(lat, long) {
 
       for (const brewery of data) {
         const breweryLi = document.createElement("li");
-        
+
         breweryLi.innerHTML = `${brewery.name}(${brewery.brewery_type}): ${brewery.phone},  ${brewery.street}, ${brewery.website_url}. `;
         breweriesUl.appendChild(breweryLi);
-        
-        
       }
     });
 }
@@ -134,8 +130,12 @@ function entertainment(id) {
             ", United States of America",
             ""
           );
-        entertainmentLi.innerHTML += '<br><a href=' + feature.properties.datasource.raw.website + '>' + feature.properties.datasource.raw.website + '</a>';
-
+        entertainmentLi.innerHTML +=
+          "<br><a href=" +
+          feature.properties.datasource.raw.website +
+          ">" +
+          feature.properties.datasource.raw.website +
+          "</a>";
 
         //if phone number, then display phone number
         if (feature.properties.datasource.raw.phone) {
@@ -149,22 +149,8 @@ function entertainment(id) {
           entertainmentUl.appendChild(entertainmentLi);
         }
       }
-
     });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // hotel api
 function hotel(id) {
@@ -216,10 +202,14 @@ function hotel(id) {
           }
           if (feature.properties.datasource.raw.website)
             hotelLi.innerHTML +=
-              "<br><a href="+feature.properties.datasource.raw.website+">"+feature.properties.datasource.raw.website + "</a";
+              "<br><a href=" +
+              feature.properties.datasource.raw.website +
+              ">" +
+              feature.properties.datasource.raw.website +
+              "</a";
         }
       });
   }
 }
 
-console.log(entertainment)
+console.log(entertainment);

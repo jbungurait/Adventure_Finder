@@ -1,11 +1,7 @@
-
 .header {
-  font-family: 'Bangers', cursive;
+  font-family: "Bangers", cursive;
   color: whitesmoke;
-  
 }
-
-
 
 .map-container {
   position: relative;
@@ -13,61 +9,52 @@
   min-height: 400px;
   padding-left: 10%;
   padding-right: 10%;
-
 }
 
 .autocomplete-panel {
-
   position: absolute;
   top: 5%;
   left: 13%;
   width: 350px;
   z-index: 1000;
-
 }
 
 .autocomplete-container {
   position: relative;
 }
 
-
 #map {
-  width:'400px' ;
-  height: '400px';
- border-radius: 20px;
+  width: "400px";
+  height: "400px";
+  border-radius: 20px;
 }
 
 .autocomplete-container input.geoapify-autocomplete-input {
-  margin-bottom:0;
-  height:36px;
+  margin-bottom: 0;
+  height: 36px;
 }
 
-
-
 #hotel-ul {
-  color:whitesmoke;
-  padding: 0 1em
-  
+  color: whitesmoke;
+  padding: 0 1em;
 }
 
 #breweries-ul {
   color: whitesmoke;
-  padding: 0 1em
-  
+  padding: 0 1em;
 }
 #entertainment-ul {
-  color:whitesmoke;
-  padding: 0 1em
-  
+  color: whitesmoke;
+  padding: 0 1em;
 }
+
 .attractions {
   font-size: 30px;
   color: whitesmoke;
   font-weight: bold;
-  padding: 0 1em
+  padding: 0 1em;
 }
 
 html {
-  background-image: linear-gradient(black, rgba(0, 0, 0, 0.795))  !important;
-  
+  background-image: linear-gradient(black, rgba(0, 0, 0, 0.795)) !important;
 }
