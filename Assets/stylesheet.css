@@ -71,3 +71,31 @@ html {
   background-image: linear-gradient(black, rgba(0, 0, 0, 0.795))  !important;
   
 }
+
+
+.brewery-name {
+  
+  font-weight: bold;
+  font-size: 20px;
+  color:blueviolet
+}
+.brewery-type {
+  font-weight: bold;
+}
+.business-name {
+  
+  font-weight: bold;
+  font-size: 20px;
+  color:blueviolet
+}
+
+
+
+
+
+
+
+
+
+
+
