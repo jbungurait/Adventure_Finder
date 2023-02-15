@@ -1,4 +1,11 @@
-@import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+
+.header {
+  font-family: 'Bangers', cursive;
+  color: whitesmoke;
+  
+}
+
+
 
 .map-container {
   position: relative;
@@ -9,11 +16,13 @@
 }
 
 .autocomplete-panel {
+
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 5%;
+  left: 13%;
   width: 350px;
   z-index: 1000;
+
 }
 
 .autocomplete-container {
@@ -23,7 +32,7 @@
 #map {
   width:'400px' ;
   height: '400px';
- 
+ border-radius: 20px;
 }
 
 .autocomplete-container input.geoapify-autocomplete-input {
@@ -31,38 +40,33 @@
   height:36px;
 }
 
-.navbar-brand {
- font-size: 50px;
-}
 
-body {
-  background-color: rgba(0, 0, 0, 0.89);
-}
 
-#Hotels{
-font-size: 30px;
-color: green;
-font-weight: bold;
-}
-
-#Entertainment {
-  font-size: 30px;
-  color: green;
-  font-weight: bold;
-}
-
-#Breweries {
-  font-size:30px;
-  color:green;
-  font-weight: bold;
+#hotel-ul {
+  color:whitesmoke;
+  padding: 0 1em
+  
 }
 
 #breweries-ul {
   color: whitesmoke;
+  padding: 0 1em
   
 }
 
 #entertainment-ul {
   color:whitesmoke;
+  padding: 0 1em
+  
+}
+.attractions {
+  font-size: 30px;
+  color: whitesmoke;
+  font-weight: bold;
+  padding: 0 1em
+}
+
+html {
+  background-image: linear-gradient(black, rgba(0, 0, 0, 0.795))  !important;
   
 }

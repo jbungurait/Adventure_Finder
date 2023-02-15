@@ -1,56 +1,95 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="UTF-8" />
 
-<head>
-  <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="Assets/stylesheet.css" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="Assets/stylesheet.css" />
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css"
+    />
+    <script
+      type="text/javascript"
+      src="https://unpkg.com/@geoapify/geocoder-autocomplete@^1/dist/index.min.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://unpkg.com/@geoapify/geocoder-autocomplete@^1/styles/minimal.css"
+    />
 
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
-  <script type="text/javascript" src="https://unpkg.com/@geoapify/geocoder-autocomplete@^1/dist/index.min.js"></script>
-  <link rel="stylesheet" type="text/css"
-    href="https://unpkg.com/@geoapify/geocoder-autocomplete@^1/styles/minimal.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 
-  <title>Adventure Finder</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    
 
-</head>
 
-<div class="map-container">
-  <div class="autocomplete-panel">
-    <div id="autocomplete" class="autocomplete-container"></div>
-  </div>
-  <div id="map" style="height: 400px"></div>
+    <title>Adventure Finder</title>
+    
+  </head>
+
+  <body>
+    
+    <header class="header is-size-1-desktop is-size-3-touch has-text-centered" >Adventure Finder</header>
+          
+          
+    <div class="map-container">
+      <div class="autocomplete-panel">
+        <div id="autocomplete" class="autocomplete-container"></div>
+      </div>
+      <div id="map" style="height: 400px"></div>
+    </div>
+    
 </div>
 
 
 <div class="columns">
-  <div class="column is-one-third">
-    <div id="Hotels">Hotels</div> 
-    <div id="hotelSpot">
-      <ul id="hotel-ul"></ul>
-    </div>
-  </div>
-  <div class="column is-one-third">
+    <div class="column is-one-third"></div>
+    <div class="column">
+      <div class="map-container">
+       
+      </div>
+      <div id="Entertainment">Entertainment</div>
+      <div id="entertainment-list">
+        <ul id="entertainment-ul">
+        </ul>
+      </div>
 
-    <div id="Entertainment">Entertainment</div>
-    <div id="entertainment-list">
-      <ul id="entertainment-ul">
-      </ul>
-    </div>
-
-  </div>
-  <div class="column is-one-third">
-    <div id="Breweries">Breweries</div>
-    <div id="breweries-list">
-      <ul id="breweries-ul"></ul>
-    </div>
-  </div>
+<div id="entertainment-list">
+    <ul id="entertainment-ul">
+    </ul>
 </div>
+<div id="hotelSpot">
+  <ul id="hotel-ul"></ul></div>
+  
+    <div class="map-container">
+      <div id="map" style="height: 600px"></div>
 
-<script src="Assets/script.js"></script>
-</body>
+    </div>
+    <div class="column">
+      <div class="map-container">
+        
+      </div>
+      <div id="Breweries">Breweries</div>
+      <div id="breweries-list">
+        <ul id="breweries-ul"></ul>
+      </div>
+    </div>
+  </div>
+ 
+  
+  
 
+
+    <script src="Assets/script.js"></script>
+  </body>
 </html>
