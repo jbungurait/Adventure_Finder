@@ -161,9 +161,6 @@ function entertainment(id) {
     entertainmentUl.appendChild(entertainmentPhone);
     entertainmentUl.appendChild(entertainmentWebsite);
   }
-
-           
-          );
         entertainmentLi.innerHTML +=
           "<br><a href=" +
           feature.properties.datasource.raw.website +
@@ -210,9 +207,6 @@ function hotel(id) {
           const hotelLi = document.createElement("li");
          
           hotelLi.innerHTML = `<span class="business-name">${feature.properties.name}</span>`;
-
-          hotelLi.innerHTML +=
-            "<br> Address: " +
 
           const hotelName = document.createElement("li");
           hotelName.setAttribute("class","business-name");
