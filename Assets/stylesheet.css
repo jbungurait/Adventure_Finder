@@ -84,7 +84,23 @@ html {
   font-size: 20px;
   color:blueviolet
 }
+.hotel-name {
+  
+  font-weight: bold;
+  font-size: 20px;
+  color:blueviolet
+}
 
+.hotel-li .name {
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #333;
+}
+.hotel-name {
+  font-weight: bold;
+  font-size: 20px;
+  color: blue;
+}
 
 
 
