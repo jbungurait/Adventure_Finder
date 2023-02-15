@@ -120,6 +120,7 @@ function brew(lat, long) {
 
 function entertainment(id) {
   // console.log("entertainment", entertainment);
+  var entertainmentUl = document.getElementById("entertainment-ul");
 
 
   fetch(
@@ -143,6 +144,7 @@ function entertainment(id) {
           " Address: " +
           feature.properties.address_line2.replace(
             ", United States of America",
+
             ""    );
 
 
@@ -166,6 +168,11 @@ function entertainment(id) {
     entertainmentUl.appendChild(entertainmentPhone);
     entertainmentUl.appendChild(entertainmentWebsite);
   }
+
+            ""
+          );
+        entertainmentLi.innerHTML += '<br><a href=' + feature.properties.datasource.raw.website + '>' + feature.properties.datasource.raw.website + '</a>';
+
 
        
         
@@ -249,6 +256,9 @@ function hotel(id) {
   }
 }
 
+
 console.log(entertainment)
+
+
 
 
