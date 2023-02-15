@@ -13,7 +13,7 @@ Adventure Finder includes a large area map and search bar which autocompletes a 
 
 ## Deployed Application 
 [Link to Deployed Application - https://jbungurait.github.io/Adventure_Finder/](https://jbungurait.github.io/Adventure_Finder/)
-
+![Screenshot of Deployed Application](/assets/images/screenshot.jpg)
 
 
 ## Collaborators
