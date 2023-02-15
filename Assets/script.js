@@ -39,8 +39,8 @@ const autocompleteInput = new autocomplete.GeocoderAutocomplete(
     type: "city",
   }
 );
-var entertainmentDiv = document.getElementById("entertainment-ul")
-var hotelDiv = document.getElementById("hotel-ul")
+var entertainmentDiv = document.getElementById("entertainment-ul");
+var hotelDiv = document.getElementById("hotel-ul");
 
 autocompleteInput.on("select", (location) => {
   // console.log(location.properties);
@@ -76,7 +76,6 @@ autocompleteInput.on("select", (location) => {
 
     // console.log(marker);
     map.panTo([location.properties.lat, location.properties.lon]);
-
   }
 });
 
@@ -98,7 +97,7 @@ function brew(lat, long) {
 
       for (const brewery of data) {
         const breweryLi = document.createElement("li");
-        
+
         breweryLi.innerHTML = `${brewery.name}(${brewery.brewery_type}): ${brewery.phone},  ${brewery.street}, ${brewery.website_url}. `;
         breweriesUl.appendChild(breweryLi);
       }
@@ -131,7 +130,13 @@ function entertainment(id) {
             ", United States of America",
             ""
           );
-        entertainmentLi.innerHTML += '<br><a href=' + feature.properties.datasource.raw.website + '>' + feature.properties.datasource.raw.website + '</a>';
+        entertainmentLi.innerHTML +=
+          "<br><a href=" +
+          feature.properties.datasource.raw.website +
+          ">" +
+          feature.properties.datasource.raw.website +
+          "</a>";
+
         //if phone number, then display phone number
         if (feature.properties.datasource.raw.phone) {
           entertainmentLi.innerHTML +=
@@ -144,10 +149,8 @@ function entertainment(id) {
           entertainmentUl.appendChild(entertainmentLi);
         }
       }
-
     });
 }
-
 // hotel api
 function hotel(id) {
   var apiUrl = "https://api.geoapify.com/v2/places?";
@@ -173,35 +176,40 @@ function hotel(id) {
         console.log("data", data);
         const hotelUl = document.getElementById("hotel-ul");
         for (const feature of data.features) {
-          console.log(
-            "Hotel response Data: ",
-            feature.properties.address_line2
-          );
-          const hotelLi = document.createElement("li");
-          hotelLi.innerHTML = feature.properties.name;
-          hotelLi.innerHTML +=
-            "<br> Address: " +
+          const hotelName = document.createElement("li");
+          hotelName.setAttribute("class","business-name");
+          hotelName.innerHTML = feature.properties.name;
+          const hotelAddress = document.createElement("li");
+          hotelAddress.innerHTML +=
+            "Address: " +
             feature.properties.address_line2.replace(
               ", United States of America",
               ""
             );
-
+            hotelUl.appendChild(hotelName);
           if (feature.properties.datasource.raw.phone) {
-            hotelLi.innerHTML +=
-              "<br> Phone:" +
+            const hotelPhone = document.createElement("li");
+            hotelPhone.innerHTML +=
+              "Phone:" +
               '<a href="tel:' +
               feature.properties.datasource.raw.phone +
               '">' +
               feature.properties.datasource.raw.phone.replace("+1", "") +
               "</a>";
-            hotelUl.appendChild(hotelLi);
+            hotelUl.appendChild(hotelPhone);
           }
-          if (feature.properties.datasource.raw.website)
-            hotelLi.innerHTML +=
-              "<br><a href="+feature.properties.datasource.raw.website+">"+feature.properties.datasource.raw.website + "</a";
+          if (feature.properties.datasource.raw.website) {
+            const hotelWebsite = document.createElement("li");
+            hotelWebsite.innerHTML +=
+              "<a href=" +
+              feature.properties.datasource.raw.website +
+              ">" +
+              feature.properties.datasource.raw.website +
+              "</a";
+            hotelUl.appendChild(hotelWebsite);
+          }
         }
       });
   }
 }
-
-console.log(entertainment)
+console.log(entertainment);
