@@ -91,7 +91,6 @@ function brew(lat, long) {
   )
     .then((response) => response.json())
     .then((data) => {
-
       console.log(data);
       var breweriesUl = document.getElementById("breweries-ul");
       breweriesUl.innerHTML = "";
@@ -102,8 +101,6 @@ function brew(lat, long) {
         
         breweryLi.innerHTML = `${brewery.name}(${brewery.brewery_type}): ${brewery.phone},  ${brewery.street}, ${brewery.website_url}. `;
         breweriesUl.appendChild(breweryLi);
-        
-        
       }
     });
 }
@@ -135,8 +132,6 @@ function entertainment(id) {
             ""
           );
         entertainmentLi.innerHTML += '<br><a href=' + feature.properties.datasource.raw.website + '>' + feature.properties.datasource.raw.website + '</a>';
-
-
         //if phone number, then display phone number
         if (feature.properties.datasource.raw.phone) {
           entertainmentLi.innerHTML +=
@@ -152,19 +147,6 @@ function entertainment(id) {
 
     });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // hotel api
 function hotel(id) {
