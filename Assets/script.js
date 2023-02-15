@@ -182,17 +182,6 @@ function entertainment(id) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 // hotel api
 function hotel(id) {
   var apiUrl = "https://api.geoapify.com/v2/places?";
@@ -218,12 +207,16 @@ function hotel(id) {
         console.log("data", data);
         const hotelUl = document.getElementById("hotel-ul");
         for (const feature of data.features) {
+          
+
           console.log(
             "Hotel response Data: ",
             feature.properties.address_line2
           );
           const hotelLi = document.createElement("li");
-          hotelLi.innerHTML = feature.properties.name;
+         
+          hotelLi.innerHTML = `<span class="business-name">${feature.properties.name}</span>`;
+
           hotelLi.innerHTML +=
             "<br> Address: " +
             feature.properties.address_line2.replace(
