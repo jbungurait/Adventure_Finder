@@ -2,9 +2,25 @@
 
 "A user-friendly app that helps travelers discover thrilling activities at their chosen destination."
 
+# User Story 
+- As an avid traveler, I want to create a web application that provides local Brewery, Hotel, and Entertainment options in the area when I search for a specific city.  
+- As an avid traveler, I want to use a web application with a location aware map that incorporates an autocomplete feature when I begin searching for a city. 
+
+
 # Functionality
+- 
+
+
+# Deployed Application 
+- 
+
 
 # Collaborators
+- Allyson Gonzales, 
+- Kyle Armour, 
+- Josh Ungurait, 
+- Olive Provencio-Johnson, 
+
 
 # License
 
