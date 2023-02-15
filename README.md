@@ -5,6 +5,7 @@
 # Functionality
 
 # Collaborators
+https://github.com/jbungurait
 
 # License
 
