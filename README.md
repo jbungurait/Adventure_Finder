@@ -8,7 +8,7 @@
 
 
 # Functionality
-- 
+Adventure Finder includes a large area map and search bar which autocompletes a city result given a user searches for city. The application provides the most results in all three categories for larger metropolitan areas (i.e. Austin, TX or Seattle, WA). Smaller cities or townships may only provide brewery or hotel information, where "entertainment" businesses categorized by the Geoapify API may not be present. 
 
 
 # Deployed Application 
