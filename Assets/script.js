@@ -153,19 +153,6 @@ function entertainment(id) {
     });
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 // hotel api
 function hotel(id) {
   var apiUrl = "https://api.geoapify.com/v2/places?";
