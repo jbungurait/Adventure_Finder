@@ -52,21 +52,6 @@ autocompleteInput.on("select", (location) => {
   localStorage.setItem("cities", JSON.stringify(cities));
 
 
-  var createDropdown = function() {
-    var dropdownItemEl = document.getElementsByClassName("dropdown-item");
-    // var cities =  localStorage.getItem("cities");
-
-    for (i = 0; i < cities.length; i++) {
-
- 
-      var dropdownEl = document.createElement("div");
-
-      dropdownEl.textContent = cities[i];  
-      dropdownItemEl.append(dropdownEl);
-    }
-  };
-createDropdown(cities);
-
   entertainmentDiv.textContent = "";
   hotelDiv.textContent = "";
   entertainment(location.properties.place_id);
@@ -74,6 +59,38 @@ createDropdown(cities);
   hotel(location.properties.place_id);
   map.panTo([location.properties.lat, location.properties.lon]);
 });
+
+function myFunction() {
+  document.getElementById("dropdown-menu7").classList.toggle("show");
+}
+
+window.onclick = function(event) {
+  if (!event.target.matches('.button')) {
+    var dropdowns = document.getElementsByClassName("dropdown-item");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+
+var createDropdown = function() {
+  var dropdownItemEl = document.getElementById("dropdown-item");
+  var cities =  JSON.parse(localStorage.getItem("cities"));
+
+    for (i = 0; i < cities.length; i++) {
+      var dropdownEl = document.createElement("div");
+      dropdownEl.textContent = cities[i];  
+      dropdownItemEl.append(dropdownEl);
+    }
+
+  };
+
+createDropdown();
+
 
 // generate an marker icon with https://apidocs.geoapify.com/playground/icon
 const markerIcon = L.icon({
