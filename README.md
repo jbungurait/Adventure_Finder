@@ -1,14 +1,35 @@
 # Adventure_Finder
 
-"A user-friendly app that helps travelers discover thrilling activities at their chosen destination."
+"A user-friendly web application that helps travelers discover thrilling activities at their chosen destination."
 
-# Functionality
+## User Story 
+- As an avid traveler, I want to create a web application that provides local Brewery, Hotel, and Entertainment options in the area when I search for a specific city.  
+- As an avid traveler, I want to use a web application with a location aware map that incorporates an autocomplete feature when I begin searching for a city. 
 
-# Collaborators
 
-# License
+## Functionality
+Adventure Finder includes a large area map and search bar which autocompletes a city result given a user searches for city. The application provides the most results in all three categories for larger metropolitan areas (i.e. Austin, TX or Seattle, WA). Smaller cities or townships may only provide brewery or hotel information, where "entertainment" businesses categorized by the Geoapify API may not be present. 
 
-MIT License
+## APIs
+[Geoapify - Map, Entertainment, Hotels](https://maps.geoapify.com) <br>
+[Open Brewery DB](https://www.openbrewerydb.org/)
+
+
+## Deployed Application 
+[Link to Deployed Application - https://jbungurait.github.io/Adventure_Finder/](https://jbungurait.github.io/Adventure_Finder/)
+![Screenshot of Deployed Application](/assets/Images/screenshot.jpg)
+
+
+## Collaborators
+- [Allyson Gonzales, GitHub Ally27](https://github.com/Ally27)
+- [Kyle Armour, GitHub kylearmour1](https://github.com/kylearmour1)
+- [Josh Ungurait, GitHub jbungurait](https://github.com/jbungurait/Adventure_Finder)
+- [Olive Provencio-Johnson, GitHub Olive-Provencio-Johnson](https://github.com/Olive-Provencio-Johnson)
+
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
 
 Copyright (c) 2023 jbungurait
 
