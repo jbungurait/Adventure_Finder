@@ -1,7 +1,6 @@
 .header {
   font-family: 'Bangers', cursive;
   color: whitesmoke;
-  
 }
 
 .map-container {
@@ -10,7 +9,6 @@
   min-height: 400px;
   padding-left: 10%;
   padding-right: 10%;
-
 }
 
 .autocomplete-panel {
@@ -20,13 +18,12 @@
   left: 13%;
   width: 350px;
   z-index: 1000;
-
 }
 
 .autocomplete-container {
   position: relative;
+  justify-content:center;
 }
-
 
 #map {
   width:'400px' ;
@@ -37,26 +34,25 @@
 .autocomplete-container input.geoapify-autocomplete-input {
   margin-bottom:0;
   height:36px;
+  border: 2px solid black;
+  width: 75%;
 }
-
-
 
 #hotel-ul {
   color:whitesmoke;
   padding: 0 1em
-  
 }
 
 #breweries-ul {
   color: whitesmoke;
   padding: 0 1em
-  
 }
+
 #entertainment-ul {
   color:whitesmoke;
   padding: 0 1em
-  
 }
+
 .attractions {
   font-size: 30px;
   color: whitesmoke;
@@ -66,34 +62,27 @@
 
 html {
   background-image: linear-gradient(black, rgba(0, 0, 0, 0.795))  !important;
-  
 }
 
-
-.brewery-name {
-  
-  font-weight: bold;
-  font-size: 20px;
-  color:blueviolet
-}
 .brewery-type {
   font-weight: bold;
 }
+
 .business-name {
-  
-  font-weight: bold;
-  font-size: 20px;
-  color:blueviolet
-}
-.hotel-name {
-  
+  font-style: oblique;
   font-weight: bold;
   font-size: 20px;
   color:blueviolet
 }
 
-.hotel-li .name {
-  font-weight: bold;
-  font-size: 1.2em;
-  color: #333;
+.address {
+  display: inline-block;
+}
+
+.geoapify-autocomplete-input {
+  border: 2px solid black;
+}
+
+#drop-up {
+  margin-top: 270px;
 }
