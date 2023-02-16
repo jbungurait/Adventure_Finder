@@ -28,6 +28,7 @@
 
 .autocomplete-container {
   position: relative;
+  justify-content:center;
 }
 
 
@@ -40,6 +41,8 @@
 .autocomplete-container input.geoapify-autocomplete-input {
   margin-bottom:0;
   height:36px;
+  border: 2px solid black;
+  width: 75%;
 }
 
 
@@ -73,38 +76,36 @@ html {
 }
 
 
-.brewery-name {
-  
-  font-weight: bold;
-  font-size: 20px;
-  color:blueviolet
-}
 .brewery-type {
   font-weight: bold;
 }
 .business-name {
-  
-  font-weight: bold;
-  font-size: 20px;
-  color:blueviolet
-}
-.hotel-name {
-  
+  font-style: oblique;
   font-weight: bold;
   font-size: 20px;
   color:blueviolet
 }
 
-.hotel-li .name {
-  font-weight: bold;
-  font-size: 1.2em;
-  color: #333;
+
+
+
+
+.address {
+  display: inline-block;
 }
-.hotel-name {
-  font-weight: bold;
-  font-size: 20px;
-  color: blue;
+
+
+.geoapify-autocomplete-input {
+  border: 2px solid black;
 }
+
+
+#drop-up {
+  margin-top: 270px;
+  
+}
+
+
 
 
 

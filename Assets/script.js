@@ -19,7 +19,7 @@ const retinaUrl =
 // Add map tiles layer. Set 20 as the maximal zoom and provide map data attribution.
 L.tileLayer(isRetina ? retinaUrl : baseUrl, {
   attribution:
-    'Powered by <a href="https://www.geoapify.com/" target="_blank">Geoapify</a> | <a href="https://openmaptiles.org/" rel="nofollow" target="_blank">(c) OpenMapTiles</a> <a href="https://www.openstreetmap.org/copyright" rel="nofollow" target="_blank">(c) OpenStreetMap</a> contributors',
+    'Powered by <a href="https://www.geoapify.com/" target="_blank">Geoapify</a> | <a       href="https://openmaptiles.org/" rel="nofollow" target="_blank">(c) OpenMapTiles</a> <a href="https://www.openstreetmap.org/copyright" rel="nofollow" target="_blank">(c) OpenStreetMap</a> contributors',
   apiKey: myapiKey,
   maxZoom: 20,
   id: "osm-bright",
@@ -45,6 +45,21 @@ var hotelDiv = document.getElementById("hotel-ul")
 autocompleteInput.on("select", (location) => {
   // console.log(location.properties);
   // console.log(location.properties.lat);
+  const selectedLocation = location.properties.name;
+
+  let cities = JSON.parse(localStorage.getItem("cities")) || [];
+  cities.push(selectedLocation);
+  localStorage.setItem("cities", JSON.stringify(cities));
+
+
+ 
+  
+
+
+  
+
+
+
   entertainmentDiv.textContent = "";
   hotelDiv.textContent = "";
   entertainment(location.properties.place_id);
@@ -65,11 +80,10 @@ let marker;
 
 autocompleteInput.on("select", (location) => {
   // Add marker with the selected location
-  if (marker) {
+   if (marker) {
     marker.remove();
   }
-
-  if (location) {
+   if (location) {
     marker = L.marker([location.properties.lat, location.properties.lon], {
       icon: markerIcon,
     }).addTo(map);
@@ -89,36 +103,35 @@ function brew(lat, long) {
     long +
     "&per_page=10"
   )
-    .then((response) => response.json())
-    .then((data) => {
+  .then((response) => response.json())
+  .then((data) => {
 
-      console.log(data);
-      const breweriesUl = document.getElementById("breweries-ul");
-      breweriesUl.innerHTML = "";
+    console.log(data);
+    const breweriesUl = document.getElementById("breweries-ul");
+    breweriesUl.innerHTML = "";
 
-      for (const brewery of data) {
-        const breweryLi = document.createElement("li");
+    for (const brewery of data) {
+      const breweryLi = document.createElement("li");
 
-        breweryLi.innerHTML = `<span class="business-name">${brewery.name}</span> (<span class="brewery-type">${brewery.brewery_type}</span>)<div>Address:<div> ${brewery.street}, ${brewery.city}, ${brewery.state} ${brewery.postal_code} 
+        breweryLi.innerHTML = 
+        `<span class="business-name">${brewery.name}</span>
+        (<span class="brewery-type">${brewery.brewery_type}</span>)<br>
+        Address: ${brewery.street}, 
+        ${brewery.city},
+        ${brewery.state}
+        ${brewery.postal_code}
         
-        
-        
-        <div>Phone: <a href="tel:Phone${brewery.phone}" >${brewery.phone}</a></div>
-        
-        
-       
-       <div> <a href="${brewery.website_url}">${brewery.website_url}</a> 
-       </div>`;
+        <div>Phone:<a href="tel:Phone${brewery.phone}" >${brewery.phone.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3')}</a></div>
+        <div> <a href="${brewery.website_url}">${brewery.website_url}</a></div>`;
 
         breweriesUl.appendChild(breweryLi);
 
-      }
-    });
+    }
+  });
 }
 
 function entertainment(id) {
   // console.log("entertainment", entertainment);
-
   fetch(
     "https://api.geoapify.com/v2/places?categories=entertainment.culture&filter=place:" +
     id +
@@ -128,45 +141,43 @@ function entertainment(id) {
     .then((data) => {
       // console.log(data.features);
       const entertainmentUl = document.getElementById("entertainment-ul");
-      for (const feature of data.features) {
+        for (const feature of data.features) {
         // console.log(feature);
-        const entertainmentName = document.createElement("li");
-        entertainmentName.setAttribute("class", "business-name");
+          const entertainmentName = document.createElement("li");
+          entertainmentName.setAttribute("class", "business-name");
         //this is meant to provide the entertainment name
-        entertainmentName.innerHTML = feature.properties.name;
+          entertainmentName.innerHTML = feature.properties.name;
         //this is meant to provide the entertainment address
         const entertainmentAddress = document.createElement("li");
-        entertainmentAddress.innerHTML +=
+          entertainmentAddress.innerHTML +=
           " Address: " +
           feature.properties.address_line2.replace(
             ", United States of America",
             ""    );
-
             const entertainmentWebsite = document.createElement("li");
-            entertainmentWebsite.innerHTML += '<a href=' + feature.properties.datasource.raw.website + '>' + feature.properties.datasource.raw.website + '</a>';
+            entertainmentWebsite.innerHTML += '<a href=' + feature.properties.datasource.raw.website + '>' + feature.properties.datasource.raw.website + '</a>';           
        
-            entertainmentUl.appendChild(entertainmentName);
-            entertainmentUl.appendChild(entertainmentAddress);
+          entertainmentUl.appendChild(entertainmentName);
+          entertainmentUl.appendChild(entertainmentAddress);
              
-
    //if phone number, then display phone number
-   if (feature.properties.datasource.raw.phone) {
-    const entertainmentPhone = document.createElement("li");
+      if (feature.properties.datasource.raw.phone) {
+      const entertainmentPhone = document.createElement("li");
+      const numberLayout = feature.properties.datasource.raw.phone.replace(/\+1|\D/g, '').replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
+    
     entertainmentPhone.innerHTML +=
       " Phone:" +
       '<a href="tel:' +
-      feature.properties.datasource.raw.phone +
+      numberLayout +
       '">' +
-      feature.properties.datasource.raw.phone +
+      numberLayout +
       "</a>";
     entertainmentUl.appendChild(entertainmentPhone);
     entertainmentUl.appendChild(entertainmentWebsite);
-  }
-
-      }
-
-    });
 }
+  }
+    });
+    }
 
 
 // hotel api
@@ -194,7 +205,7 @@ function hotel(id) {
         console.log("data", data);
         const hotelUl = document.getElementById("hotel-ul");
         for (const feature of data.features) {
-          
+         
 
           console.log(
             "Hotel response Data: ",
@@ -212,12 +223,13 @@ function hotel(id) {
             );
 
           if (feature.properties.datasource.raw.phone) {
+            const numberLayout = feature.properties.datasource.raw.phone.replace(/\+1|\D/g, '').replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
             hotelLi.innerHTML +=
               "<br> Phone:" +
               '<a href="tel:' +
-              feature.properties.datasource.raw.phone +
+              numberLayout +
               '">' +
-              feature.properties.datasource.raw.phone.replace("+1", "") +
+              numberLayout +
               "</a>";
             hotelUl.appendChild(hotelLi);
           }
@@ -229,6 +241,6 @@ function hotel(id) {
   }
 }
 
+
+
 console.log(entertainment)
-
-
