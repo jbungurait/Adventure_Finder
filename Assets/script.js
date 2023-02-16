@@ -60,7 +60,7 @@ autocompleteInput.on("select", (location) => {
   map.panTo([location.properties.lat, location.properties.lon]);
 });
 
-function myFunction() {
+function dropDownList() {
   document.getElementById("dropdown-menu7").classList.toggle("show");
 }
 
