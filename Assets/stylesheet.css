@@ -1,28 +1,139 @@
+.header {
+  font-family: "Bangers", cursive;
+  color: whitesmoke;
+}
+
 .map-container {
   position: relative;
+  min-width: 75%vw;
+  min-height: 400px;
+  padding-left: 10%;
+  padding-right: 10%;
 }
 
 .autocomplete-panel {
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 5%;
+  left: 13%;
   width: 350px;
   z-index: 1000;
 }
 
 .autocomplete-container {
   position: relative;
+  justify-content: center;
 }
 
-html,
-body,
 #map {
-  width:'400px' ;
-  height: '400px';
-  margin: 0;
+  width: "400px";
+  height: "400px";
+  border-radius: 20px;
 }
 
 .autocomplete-container input.geoapify-autocomplete-input {
-  margin-bottom:0;
-  height:36px;
+  margin-bottom: 0;
+  height: 36px;
+  border: 2px solid black;
+  width: 75%;
 }
+
+#hotel-ul {
+  color: whitesmoke;
+  padding: 0 1em;
+}
+
+#breweries-ul {
+  color: whitesmoke;
+  padding: 0 1em;
+}
+
+#entertainment-ul {
+  color: whitesmoke;
+  padding: 0 1em;
+}
+
+.attractions {
+  font-size: 30px;
+  color: whitesmoke;
+  font-weight: bold;
+  padding: 0 1em;
+}
+
+html {
+  background-image: linear-gradient(black, rgba(0, 0, 0, 0.795)) !important;
+}
+
+.brewery-type {
+  font-weight: bold;
+}
+
+.business-name {
+  font-style: oblique;
+  font-weight: bold;
+  font-size: 20px;
+  color: blueviolet;
+}
+
+.address {
+  display: inline-block;
+}
+
+.geoapify-autocomplete-input {
+  border: 2px solid black;
+}
+
+#drop-up {
+  margin-top: 270px;
+}
+
+.button {
+  background-color: #3498db;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.button:hover,
+.dropbtn:focus {
+  background-color: #2980b9;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.show {
+  display: block;
+}
+
+.searches,
+#city-list {
+  text-decoration: underline;
+  text-decoration-thickness: 0.1em;
+  font-weight: bold;
+  color: black;
+}
+
