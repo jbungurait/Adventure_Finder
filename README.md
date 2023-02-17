@@ -11,14 +11,16 @@
 Adventure Finder includes a large area map and search bar which autocompletes a city result given a user searches for city. The application provides the most results in all three categories for larger metropolitan areas (i.e. Austin, TX or Seattle, WA). Smaller cities or townships may only provide brewery or hotel information, where "entertainment" businesses categorized by the Geoapify API may not be present. 
 
 ## APIs
-[Geoapify](https://www.geoapify.com/)
+[Geoapify](https://www.geoapify.com/) <br>
 [Open Brewery DB](https://www.openbrewerydb.org/)
 
 
 ## Deployed Application 
 [Link to Deployed Application - https://jbungurait.github.io/Adventure_Finder/](https://jbungurait.github.io/Adventure_Finder/)
-![Screenshot of Deployed Application](/assets/images/screenshot.jpg)
+(https://github.com/jbungurait/Adventure_Finder)
 
+
+![image](Assets/Screenshot%202023-02-16%20at%2022-09-10%20Adventure%20Finder.png)
 
 ## Collaborators
 - [Allyson Gonzales, GitHub Ally27](https://github.com/Ally27)
