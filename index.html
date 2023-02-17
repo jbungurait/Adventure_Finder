@@ -30,30 +30,35 @@
     <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 
-    
-
-
     <title>Adventure Finder</title>
     
   </head>
 
   <body>
     
+    
     <header class="header is-size-1-desktop is-size-3-touch has-text-centered" >Adventure Finder</header>
-          
-          
+    
     <div class="map-container">
       <div class="autocomplete-panel">
+       
         <div id="autocomplete" class="autocomplete-container"></div>
+       
+        <section class="searches">Your Past Searches:
+        <div id="city-list">
+        </div>
+    </section>
+      
       </div>
+     
       <div id="map" style="height: 400px"></div>
+     
     </div>
     
 </div>
-
+</div>
 
 <div class="columns">
-    
     
     <div class="column">
         
@@ -73,16 +78,12 @@
             <div id="Breweries" class="attractions">Breweries</div>
             <div id="breweries-list">
                 <ul id="breweries-ul" class="list-unstyled"></ul>
-            </div>
-        
+            </div> 
     
 </div>
 </div>
- 
-  
-  
-
 
     <script src="Assets/script.js"></script>
   </body>
 </html>
+
