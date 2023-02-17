@@ -102,6 +102,13 @@ function brew(lat, long) {
       for (const brewery of data) {
         const breweryLi = document.createElement("li");
 
+        breweryLi.innerHTML = `<span class="business-name">${brewery.name}</span> (<span class="brewery-type">${brewery.brewery_type}</span>)<div>Address:<div> ${brewery.street}, ${brewery.city}, ${brewery.state} ${brewery.postal_code}  
+        
+        <div>Phone: <a href="tel:Phone${brewery.phone}" >${brewery.phone}</a></div>
+          
+       <div> <a href="${brewery.website_url}">${brewery.website_url}</a> 
+       </div>`;
+
         breweryLi.innerHTML = `<span class="business-name">${
           brewery.name
         }</span>
@@ -216,11 +223,19 @@ function hotel(id) {
 
           hotelLi.innerHTML +=
             "<br> Address: " +
+
+          const hotelName = document.createElement("li");
+          hotelName.setAttribute("class","business-name");
+          hotelName.innerHTML = feature.properties.name;
+          const hotelAddress = document.createElement("li");
+          hotelAddress.innerHTML +=
+            "Address: " +
+
             feature.properties.address_line2.replace(
               ", United States of America",
               ""
             );
-
+            hotelUl.appendChild(hotelName);
           if (feature.properties.datasource.raw.phone) {
             const numberLayout = feature.properties.datasource.raw.phone
               .replace(/\+1|\D/g, "")
@@ -232,7 +247,17 @@ function hotel(id) {
               '">' +
               numberLayout +
               "</a>";
-            hotelUl.appendChild(hotelLi);
+            hotelUl.appendChild(hotelPhone);
+          }
+          if (feature.properties.datasource.raw.website) {
+            const hotelWebsite = document.createElement("li");
+            hotelWebsite.innerHTML +=
+              "<a href=" +
+              feature.properties.datasource.raw.website +
+              ">" +
+              feature.properties.datasource.raw.website +
+              "</a";
+            hotelUl.appendChild(hotelWebsite);
           }
           if (feature.properties.datasource.raw.website)
             hotelLi.innerHTML +=
