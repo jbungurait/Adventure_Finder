@@ -39,8 +39,8 @@ const autocompleteInput = new autocomplete.GeocoderAutocomplete(
     type: "city",
   }
 );
-var entertainmentDiv = document.getElementById("entertainment-ul")
-var hotelDiv = document.getElementById("hotel-ul")
+var entertainmentDiv = document.getElementById("entertainment-ul");
+var hotelDiv = document.getElementById("hotel-ul");
 
 autocompleteInput.on("select", (location) => {
   // console.log(location.properties);
@@ -50,15 +50,6 @@ autocompleteInput.on("select", (location) => {
   let cities = JSON.parse(localStorage.getItem("cities")) || [];
   cities.push(selectedLocation);
   localStorage.setItem("cities", JSON.stringify(cities));
-
-
- 
-  
-
-
-  
-
-
 
   entertainmentDiv.textContent = "";
   hotelDiv.textContent = "";
@@ -80,17 +71,16 @@ let marker;
 
 autocompleteInput.on("select", (location) => {
   // Add marker with the selected location
-   if (marker) {
+  if (marker) {
     marker.remove();
   }
-   if (location) {
+  if (location) {
     marker = L.marker([location.properties.lat, location.properties.lon], {
       icon: markerIcon,
     }).addTo(map);
 
     // console.log(marker);
     map.panTo([location.properties.lat, location.properties.lon]);
-
   }
 });
 
@@ -98,87 +88,98 @@ function brew(lat, long) {
   // console.log("hello", lat, long);
   fetch(
     "https://api.openbrewerydb.org/breweries?by_dist=" +
-    lat +
-    "," +
-    long +
-    "&per_page=10"
+      lat +
+      "," +
+      long +
+      "&per_page=10"
   )
-  .then((response) => response.json())
-  .then((data) => {
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      const breweriesUl = document.getElementById("breweries-ul");
+      breweriesUl.innerHTML = "";
 
-    console.log(data);
-    const breweriesUl = document.getElementById("breweries-ul");
-    breweriesUl.innerHTML = "";
+      for (const brewery of data) {
+        const breweryLi = document.createElement("li");
 
-    for (const brewery of data) {
-      const breweryLi = document.createElement("li");
-
-        breweryLi.innerHTML = 
-        `<span class="business-name">${brewery.name}</span>
+        breweryLi.innerHTML = `<span class="business-name">${
+          brewery.name
+        }</span>
         (<span class="brewery-type">${brewery.brewery_type}</span>)<br>
         Address: ${brewery.street}, 
         ${brewery.city},
         ${brewery.state}
         ${brewery.postal_code}
         
-        <div>Phone:<a href="tel:Phone${brewery.phone}" >${brewery.phone.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3')}</a></div>
-        <div> <a href="${brewery.website_url}">${brewery.website_url}</a></div>`;
+        <div>Phone:<a href="tel:Phone${brewery.phone}" >${brewery.phone.replace(
+          /(\d{3})(\d{3})(\d{4})/,
+          "($1) $2-$3"
+        )}</a></div>
+        <div> <a href="${brewery.website_url}">${
+          brewery.website_url
+        }</a></div>`;
 
         breweriesUl.appendChild(breweryLi);
-
-    }
-  });
+      }
+    });
 }
 
 function entertainment(id) {
   // console.log("entertainment", entertainment);
   fetch(
     "https://api.geoapify.com/v2/places?categories=entertainment.culture&filter=place:" +
-    id +
-    "&limit=10&apiKey=56552ab1bbc6495d8b095457b9993b3e"
+      id +
+      "&limit=10&apiKey=56552ab1bbc6495d8b095457b9993b3e"
   )
     .then((response) => response.json())
     .then((data) => {
       // console.log(data.features);
       const entertainmentUl = document.getElementById("entertainment-ul");
-        for (const feature of data.features) {
+      for (const feature of data.features) {
         // console.log(feature);
-          const entertainmentName = document.createElement("li");
-          entertainmentName.setAttribute("class", "business-name");
+        const entertainmentName = document.createElement("li");
+        entertainmentName.setAttribute("class", "business-name");
         //this is meant to provide the entertainment name
-          entertainmentName.innerHTML = feature.properties.name;
+        entertainmentName.innerHTML = feature.properties.name;
         //this is meant to provide the entertainment address
         const entertainmentAddress = document.createElement("li");
-          entertainmentAddress.innerHTML +=
+        entertainmentAddress.innerHTML +=
           " Address: " +
           feature.properties.address_line2.replace(
             ", United States of America",
-            ""    );
-            const entertainmentWebsite = document.createElement("li");
-            entertainmentWebsite.innerHTML += '<a href=' + feature.properties.datasource.raw.website + '>' + feature.properties.datasource.raw.website + '</a>';           
-       
-          entertainmentUl.appendChild(entertainmentName);
-          entertainmentUl.appendChild(entertainmentAddress);
-             
-   //if phone number, then display phone number
-      if (feature.properties.datasource.raw.phone) {
-      const entertainmentPhone = document.createElement("li");
-      const numberLayout = feature.properties.datasource.raw.phone.replace(/\+1|\D/g, '').replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
-    
-    entertainmentPhone.innerHTML +=
-      " Phone:" +
-      '<a href="tel:' +
-      numberLayout +
-      '">' +
-      numberLayout +
-      "</a>";
-    entertainmentUl.appendChild(entertainmentPhone);
-    entertainmentUl.appendChild(entertainmentWebsite);
-}
-  }
-    });
-    }
+            ""
+          );
+        const entertainmentWebsite = document.createElement("li");
+        entertainmentWebsite.innerHTML +=
+          "<a href=" +
+          feature.properties.datasource.raw.website +
+          ">" +
+          feature.properties.datasource.raw.website +
+          "</a>";
 
+        entertainmentUl.appendChild(entertainmentName);
+        entertainmentUl.appendChild(entertainmentAddress);
+
+        //if phone number, then display phone number
+        if (feature.properties.datasource.raw.phone) {
+          const entertainmentPhone = document.createElement("li");
+          const numberLayout = feature.properties.datasource.raw.phone
+            .replace(/\+1|\D/g, "")
+            .replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3");
+
+          entertainmentPhone.innerHTML +=
+            " Phone:" +
+            '<a href="tel:' +
+            numberLayout +
+            '">' +
+            numberLayout +
+            "</a>";
+          entertainmentUl.appendChild(entertainmentPhone);
+          entertainmentUl.appendChild(entertainmentWebsite);
+        }
+      }
+    });
+}
 
 // hotel api
 function hotel(id) {
@@ -205,14 +206,12 @@ function hotel(id) {
         console.log("data", data);
         const hotelUl = document.getElementById("hotel-ul");
         for (const feature of data.features) {
-         
-
           console.log(
             "Hotel response Data: ",
             feature.properties.address_line2
           );
           const hotelLi = document.createElement("li");
-         
+
           hotelLi.innerHTML = `<span class="business-name">${feature.properties.name}</span>`;
 
           hotelLi.innerHTML +=
@@ -223,7 +222,9 @@ function hotel(id) {
             );
 
           if (feature.properties.datasource.raw.phone) {
-            const numberLayout = feature.properties.datasource.raw.phone.replace(/\+1|\D/g, '').replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
+            const numberLayout = feature.properties.datasource.raw.phone
+              .replace(/\+1|\D/g, "")
+              .replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3");
             hotelLi.innerHTML +=
               "<br> Phone:" +
               '<a href="tel:' +
@@ -235,12 +236,20 @@ function hotel(id) {
           }
           if (feature.properties.datasource.raw.website)
             hotelLi.innerHTML +=
-              "<br><a href=" + feature.properties.datasource.raw.website + ">" + feature.properties.datasource.raw.website + "</a";
+              "<br><a href=" +
+              feature.properties.datasource.raw.website +
+              ">" +
+              feature.properties.datasource.raw.website +
+              "</a";
         }
       });
   }
 }
 
-
-
-console.log(entertainment)
+const cities = JSON.parse(localStorage.getItem("cities")) || [];
+const cityList = document.getElementById("city-list");
+cities.forEach((city) => {
+  const listItem = document.createElement("li");
+  listItem.textContent = city;
+  cityList.appendChild(listItem);
+});
