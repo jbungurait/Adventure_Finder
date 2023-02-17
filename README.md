@@ -53,20 +53,3 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-  if(currentPage === 6) {
-          var storedLeaderboardData = JSON.parse(localStorage.getItem("leaderboardData")) || [];
-          storedLeaderboardData.sort(function(a, b) {
-            return b.score - a.score;
-          });
-          var leaderboard = document.getElementById("leaderboard");
-          for (var i = 0; i < storedLeaderboardData.length; i ++){
-            var leaderboardItem = document.createElement("div");
-            leaderboardItem.innerHTML = storedLeaderboardData[i].initials + ": " + storedLeaderboardData[i].score;
-            leaderboard.appendChild(leaderboardItem);
-            
-          }
-        }
-       
-      });
-      
-    }
